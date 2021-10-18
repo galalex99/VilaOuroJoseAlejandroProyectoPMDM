@@ -11,6 +11,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        val preferenciasApp = getSharedPreferences("Preferencias",MODE_PRIVATE)
         tvClickRegistro= findViewById( R.id.tvClickRegistro)
         tvClickRegistro.setOnClickListener(){
         val intent= Intent(this,MainActivity2::class.java)

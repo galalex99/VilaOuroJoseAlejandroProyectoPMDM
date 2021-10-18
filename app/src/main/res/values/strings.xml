@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">VilaOuroJoseAlejandroProyectoPMDM</string>
+    <string name="register_line">Registro</string>
+    <string name="login_line">Login</string>
 </resources>
