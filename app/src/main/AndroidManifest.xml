@@ -10,12 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.VilaOuroJoseAlejandroProyectoPMDM">
         <activity
-            android:name=".MainActivity2"
+            android:name=".RegisterActivity"
             android:exported="true"
 
             android:label="@string/register_line" />
         <activity
-            android:name=".MainActivity"
+            android:name=".LoginActivity"
             android:exported="true"
             android:label="@string/login_line">
             <intent-filter>
