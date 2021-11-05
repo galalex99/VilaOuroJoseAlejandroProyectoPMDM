@@ -26,40 +26,21 @@
         android:text="Titulo Pelicula"/>
 
     <TextView
-        android:id="@+id/tvEtiquetaGenero"
+        android:id="@+id/tvEtiquetaPuntuacion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Género:"
-        app:layout_constraintStart_toStartOf="@+id/tvTituloPelicula"
+        android:text="Puntuación:"
+        app:layout_constraintTop_toBottomOf="@+id/tvTituloPelicula"
+        tools:layout_editor_absoluteX="176dp" />
+
+    <TextView
+        android:id="@+id/tvPuntuacion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:text="Texto da puntuación"
+        app:layout_constraintStart_toEndOf="@+id/tvEtiquetaPuntuacion"
         app:layout_constraintTop_toBottomOf="@+id/tvTituloPelicula" />
-
-    <TextView
-        android:id="@+id/tvGenero"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="16dp"
-        android:text="TextoDoGenero"
-        app:layout_constraintStart_toEndOf="@+id/tvEtiquetaGenero"
-        app:layout_constraintTop_toBottomOf="@+id/tvTituloPelicula" />
-
-    <TextView
-        android:id="@+id/tvEtiquetaDirector"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Director:"
-        app:layout_constraintStart_toStartOf="@+id/tvEtiquetaGenero"
-        app:layout_constraintTop_toBottomOf="@+id/tvEtiquetaGenero" />
-
-    <TextView
-        android:id="@+id/tvDirector"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="16dp"
-        android:text="TextoDoDirector"
-        app:layout_constraintStart_toEndOf="@+id/tvEtiquetaDirector"
-        app:layout_constraintTop_toBottomOf="@+id/tvGenero" />
 </androidx.constraintlayout.widget.ConstraintLayout>
