@@ -10,6 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.VilaOuroJoseAlejandroProyectoPMDM">
         <activity
+            android:name=".activities.FilmsListActivity"
+            android:exported="true"
+
+            android:label="Lista de peliculas" />
+        <activity
             android:name=".activities.RegisterActivity"
             android:exported="true"
 
