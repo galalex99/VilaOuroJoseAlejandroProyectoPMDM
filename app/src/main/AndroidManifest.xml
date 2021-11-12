@@ -10,15 +10,28 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.VilaOuroJoseAlejandroProyectoPMDM">
         <activity
+            android:name=".activities.DetailActivity"
+            android:exported="true">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.FilmsListActivity" />
+        </activity>
+        <activity
             android:name=".activities.FilmsListActivity"
             android:exported="true"
-
-            android:label="Lista de peliculas" />
+            android:label="Lista de peliculas">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.LoginActivity" />
+        </activity>
         <activity
             android:name=".activities.RegisterActivity"
             android:exported="true"
-
-            android:label="@string/register_line" />
+            android:label="@string/register_line">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.LoginActivity" />
+        </activity>
         <activity
             android:name=".activities.LoginActivity"
             android:exported="true"

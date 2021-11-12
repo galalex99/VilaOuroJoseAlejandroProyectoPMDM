@@ -1,5 +1,11 @@
 <resources>
     <string name="app_name">VilaOuroJoseAlejandroProyectoPMDM</string>
+
+
+    <!-- Etiquetas -->
     <string name="register_line">Registro</string>
     <string name="login_line">Login</string>
+
+    <!-- Hints -->
+    <string name="hint_Email">Email</string>
 </resources>
