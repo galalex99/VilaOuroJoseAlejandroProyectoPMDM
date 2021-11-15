@@ -15,10 +15,12 @@
 
         <ImageView
             android:id="@+id/ivPortadaPelicula"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_margin="16dp"
+
+
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:srcCompat="@tools:sample/avatars" />
@@ -37,7 +39,7 @@
             android:id="@+id/tvEtiquetaPuntuacion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="32dp"
             android:text="Puntuación:"
             app:layout_constraintStart_toStartOf="@+id/tvTituloPelicula"
             app:layout_constraintTop_toBottomOf="@+id/tvTituloPelicula" />
@@ -46,8 +48,8 @@
             android:id="@+id/tvPuntuacion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="32dp"
             android:text="Texto da puntuación"
             app:layout_constraintStart_toEndOf="@+id/tvEtiquetaPuntuacion"
             app:layout_constraintTop_toBottomOf="@+id/tvTituloPelicula" />
