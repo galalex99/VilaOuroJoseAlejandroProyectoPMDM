@@ -20,6 +20,8 @@ import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.modelo.en
 class ListaPeliculasAdapter(val peliculas: List<Pelicula>, val context: Context) :
     RecyclerView.Adapter<ListaPeliculasAdapter.FilmHolder>() {
     // Creación de Peliculas Holder
+
+    // Deixei o findView by id para a entrega
     // holder po binding class FilmHolder(private val itemBinding: ItemFilmBinding) : RecyclerView.ViewHolder(itemBinding.root)
     class FilmHolder(view: View) : RecyclerView.ViewHolder(view) {
         val tvTituloPelicula = view.findViewById<TextView>(R.id.tvTituloPelicula)
