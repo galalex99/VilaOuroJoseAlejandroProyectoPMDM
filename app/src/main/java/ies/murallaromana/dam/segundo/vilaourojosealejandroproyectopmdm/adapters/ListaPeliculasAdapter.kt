@@ -22,10 +22,10 @@ class ListaPeliculasAdapter(val peliculas: List<Pelicula>, val context: Context)
     // Creación de Peliculas Holder
 
     // Deixei o findView by id para a entrega
-    // holder po binding class FilmHolder(private val itemBinding: ItemFilmBinding) : RecyclerView.ViewHolder(itemBinding.root)
-    class FilmHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val tvTituloPelicula = view.findViewById<TextView>(R.id.tvTituloPelicula)
-        val ivPelicula = view.findViewById<ImageView>(R.id.ivPortadaPelicula)
+     class FilmHolder(val itemBinding: ItemFilmBinding) : RecyclerView.ViewHolder(itemBinding.root)
+
+        //val tvTituloPelicula = view.findViewById<TextView>(R.id.tvTituloPelicula)
+        //val ivPelicula = view.findViewById<ImageView>(R.id.ivPortadaPelicula)
 
         //  val tvTituloPelicula = view.findViewById<TextView>(R.id.tv)
         // val tvTituloPelicula = view.findViewById<TextView>(R.id.tvTituloPelicula)
@@ -33,9 +33,24 @@ class ListaPeliculasAdapter(val peliculas: List<Pelicula>, val context: Context)
         // val tvTituloPelicula = view.findViewById<TextView>(R.id.tvTituloPelicula)
         //val tvTituloPelicula = view.findViewById<TextView>(R.id.tvTituloPelicula)
         //val tvTituloPelicula = view.findViewById<TextView>(R.id.tvTituloPelicula)
-        val layoutDetail: CardView = itemView.findViewById<CardView>(R.id.idItem_film)
+        //val layoutDetail: CardView = itemView.findViewById<CardView>(R.id.idItem_film)
 
     }
+
+// Este método se llama tantas veces como elementos hay en la lista
+override fun onBindViewHolder(holder: FilmHolder, position: Int) {
+    val pelicula = peliculas.get(position)
+    holder.tvTituloPelicula.text = pelicula.titulo
+    Picasso.get().isLoggingEnabled = true
+    Picasso.get().load(pelicula.url).into(holder.ivPelicula)
+
+    holder.layoutDetail.setOnClickListener {
+        val intent = Intent(context, DetailActivity::class.java)
+        intent.putExtra("pelicula", pelicula)
+        context.startActivity(intent)
+
+    }
+}
 
     // Este método se ocupa de INFLAR la vista (el item film)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FilmHolder {
@@ -49,34 +64,7 @@ class ListaPeliculasAdapter(val peliculas: List<Pelicula>, val context: Context)
     }
 
 
-    // Este método se llama tantas veces como elementos hay en la lista
-    override fun onBindViewHolder(holder: FilmHolder, position: Int) {
-        val pelicula = peliculas.get(position)
-        holder.tvTituloPelicula.text = pelicula.titulo
-        Picasso.get().isLoggingEnabled = true
-        Picasso.get().load(pelicula.url).into(holder.ivPelicula)
-
-        holder.layoutDetail.setOnClickListener {
-            val intent = Intent(context, DetailActivity::class.java)
-            intent.putExtra("pelicula", pelicula)
-            context.startActivity(intent)
-
-        }
-    }
-
-    // Class to bind holders with data
-    class BinderFilmViewHolder(private val Binder: ItemFilmBinding) :
-        RecyclerView.ViewHolder(Binder) {
-        fun bind(pelicula: Pelicula) {
 
 
-            // Binding image view with the image of the url obtained with picasso
-            Binder.ivPortadaPelicula =
-                Picasso.get().load(pelicula.url).into(Binder.ivPortadaPelicula)
-
-
-        }
-
-    }
 
 }
