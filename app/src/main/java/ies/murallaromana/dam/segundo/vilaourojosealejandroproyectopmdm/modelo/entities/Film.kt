@@ -2,14 +2,14 @@ package ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.modelo.e
 
 import java.io.Serializable
 
-class Pelicula (
+class Film (
         var id: Long,
-        var titulo: String,
+        var title: String,
         var director: String,
-        var idioma: String,
-        var fechaLanzamiento: String,
-        var puntuacion: Double,
-        var clasificacionEdad: Short,
+        var language: String,
+        var moviePremiere: String,
+        var score: Double,
+        var ageRating: Short,
         var url: String
 ) : Serializable
 

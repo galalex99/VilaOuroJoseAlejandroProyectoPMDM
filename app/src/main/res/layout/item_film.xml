@@ -14,7 +14,7 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/ivPortadaPelicula"
+            android:id="@+id/ivMovieCover"
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:layout_margin="16dp"
@@ -26,32 +26,32 @@
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
-            android:id="@+id/tvTituloPelicula"
+            android:id="@+id/tvFilmTitle"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="24dp"
             android:text="Titulo Pelicula"
-            app:layout_constraintStart_toEndOf="@+id/ivPortadaPelicula"
+            app:layout_constraintStart_toEndOf="@+id/ivMovieCover"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tvEtiquetaPuntuacion"
+            android:id="@+id/tvPunctuationTag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:text="Puntuación:"
-            app:layout_constraintStart_toStartOf="@+id/tvTituloPelicula"
-            app:layout_constraintTop_toBottomOf="@+id/tvTituloPelicula" />
+            app:layout_constraintStart_toStartOf="@+id/tvFilmTitle"
+            app:layout_constraintTop_toBottomOf="@+id/tvFilmTitle" />
 
         <TextView
-            android:id="@+id/tvPuntuacion"
+            android:id="@+id/tvPunctuation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="32dp"
             android:text="Texto da puntuación"
-            app:layout_constraintStart_toEndOf="@+id/tvEtiquetaPuntuacion"
-            app:layout_constraintTop_toBottomOf="@+id/tvTituloPelicula" />
+            app:layout_constraintStart_toEndOf="@+id/tvPunctuationTag"
+            app:layout_constraintTop_toBottomOf="@+id/tvFilmTitle" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

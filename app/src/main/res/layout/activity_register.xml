@@ -6,60 +6,60 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.RegisterActivity"
-    android:paddingHorizontal="@dimen/margen_pantalla_default_horizontal"
-    android:paddingVertical="@dimen/margen_pantalla_default_vertical"
+    android:paddingHorizontal="@dimen/default_horizontal_margin_screen"
+    android:paddingVertical="@dimen/default_vertical_margin_screen"
     >
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideCentralRegistro"
+        android:id="@+id/guideCentralRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.5"/>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilNombreRegistro"
+        android:id="@+id/tilRegisterName"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        app:layout_constraintEnd_toStartOf="@+id/guideCentralRegistro"
-        app:layout_constraintStart_toStartOf="@+id/guideCentralRegistro"
+        app:layout_constraintEnd_toStartOf="@+id/guideCentralRegister"
+        app:layout_constraintStart_toStartOf="@+id/guideCentralRegister"
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tietNombreRegistro"
+            android:id="@+id/tietRegisterName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Nombre" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilApellidosRegistro"
+        android:id="@+id/tilRegisterLastName"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        app:layout_constraintEnd_toStartOf="@+id/guideCentralRegistro"
-        app:layout_constraintStart_toStartOf="@+id/guideCentralRegistro"
-        app:layout_constraintTop_toBottomOf="@+id/tilNombreRegistro">
+        app:layout_constraintEnd_toStartOf="@+id/guideCentralRegister"
+        app:layout_constraintStart_toStartOf="@+id/guideCentralRegister"
+        app:layout_constraintTop_toBottomOf="@+id/tilRegisterName">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tietApellidosRegistro"
+            android:id="@+id/tietRegisterLastName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Apellidos" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilFechaNacimientoRegistro"
+        android:id="@+id/tilRegisterBirthDate"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        app:layout_constraintEnd_toEndOf="@+id/guideCentralRegistro"
-        app:layout_constraintStart_toStartOf="@+id/guideCentralRegistro"
-        app:layout_constraintTop_toBottomOf="@+id/tilApellidosRegistro">
+        app:layout_constraintEnd_toEndOf="@+id/guideCentralRegister"
+        app:layout_constraintStart_toStartOf="@+id/guideCentralRegister"
+        app:layout_constraintTop_toBottomOf="@+id/tilRegisterLastName">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tietFechaNacimientoRegistro"
+            android:id="@+id/tietRegisterBirthDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Fecha de Nacimiento"
@@ -67,16 +67,16 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilEmailRegistro"
+        android:id="@+id/tilRegisterEmail"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        app:layout_constraintEnd_toEndOf="@+id/guideCentralRegistro"
-        app:layout_constraintStart_toStartOf="@+id/guideCentralRegistro"
-        app:layout_constraintTop_toBottomOf="@+id/tilFechaNacimientoRegistro">
+        app:layout_constraintEnd_toEndOf="@+id/guideCentralRegister"
+        app:layout_constraintStart_toStartOf="@+id/guideCentralRegister"
+        app:layout_constraintTop_toBottomOf="@+id/tilRegisterBirthDate">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tietEmailRegistro"
+            android:id="@+id/tietRegisterEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
@@ -84,17 +84,17 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tietContraseñaRegistro"
+        android:id="@+id/tietRegisterPasswd"
         app:passwordToggleEnabled="true"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        app:layout_constraintEnd_toEndOf="@+id/guideCentralRegistro"
-        app:layout_constraintStart_toStartOf="@+id/guideCentralRegistro"
-        app:layout_constraintTop_toBottomOf="@+id/tilEmailRegistro">
+        app:layout_constraintEnd_toEndOf="@+id/guideCentralRegister"
+        app:layout_constraintStart_toStartOf="@+id/guideCentralRegister"
+        app:layout_constraintTop_toBottomOf="@+id/tilRegisterEmail">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tilContraseñaRegistro"
+            android:id="@+id/tilRegisterPasswd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
@@ -102,13 +102,13 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/btnRegistro"
+        android:id="@+id/btnRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="Registro"
-        app:layout_constraintEnd_toStartOf="@+id/guideCentralRegistro"
-        app:layout_constraintStart_toStartOf="@+id/guideCentralRegistro"
-        app:layout_constraintTop_toBottomOf="@+id/tietContraseñaRegistro" />
+        app:layout_constraintEnd_toStartOf="@+id/guideCentralRegister"
+        app:layout_constraintStart_toStartOf="@+id/guideCentralRegister"
+        app:layout_constraintTop_toBottomOf="@+id/tietRegisterPasswd" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

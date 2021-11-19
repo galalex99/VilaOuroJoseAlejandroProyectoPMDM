@@ -1,16 +1,11 @@
 package ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.activities
 
-import android.app.Activity
 import android.os.Bundle
-import android.os.PersistableBundle
-import android.view.View.inflate
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.R
-import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.adapters.ListaPeliculasAdapter
+import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.adapters.FilmsListAdapter
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.databinding.ActivityListFilmsBinding
-import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.modelo.dao.PeliculasDao
-import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.modelo.dao.PeliculasDaoMockImpl
+import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.modelo.dao.FilmsDaoMockImpl
 
 class FilmsListActivity : AppCompatActivity() {
 
@@ -22,11 +17,11 @@ class FilmsListActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val layoutManager = LinearLayoutManager(this)
-        val peliculasDao = PeliculasDaoMockImpl();
+        val peliculasDao = FilmsDaoMockImpl();
         val listaPeliculas = peliculasDao.getAll()
-        val adapter = ListaPeliculasAdapter(listaPeliculas, this)
-        binding.rvListaPeliculas.adapter = adapter
-        binding.rvListaPeliculas.layoutManager = layoutManager
+        val adapter = FilmsListAdapter(listaPeliculas, this)
+        binding.rvFilmsList.adapter = adapter
+        binding.rvFilmsList.layoutManager = layoutManager
 
     }
 

@@ -5,7 +5,9 @@
     <!-- Etiquetas -->
     <string name="register_line">Registro</string>
     <string name="login_line">Login</string>
-
+    <string name="list_line">Lista de peliculas</string>
     <!-- Hints -->
     <string name="hint_Email">Email</string>
+    <string name="film_detail_line">Film Detail</string>
+
 </resources>

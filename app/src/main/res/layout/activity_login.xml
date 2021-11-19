@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.LoginActivity"
-    android:paddingHorizontal="@dimen/margen_pantalla_default_horizontal"
-    android:paddingVertical="@dimen/margen_pantalla_default_vertical">
+    android:paddingHorizontal="@dimen/default_horizontal_margin_screen"
+    android:paddingVertical="@dimen/default_vertical_margin_screen">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilEmailLogin"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margen_elementos_default"
+        android:layout_marginTop="@dimen/default_element_margin"
         app:layout_constraintEnd_toStartOf="@+id/guideCentralLogin"
         app:layout_constraintStart_toStartOf="@+id/guideCentralLogin"
         app:layout_constraintTop_toTopOf="parent">
@@ -26,17 +26,17 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilContraseñaLogin"
+        android:id="@+id/tilPasswdLogin"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margen_elementos_default"
+        android:layout_marginTop="@dimen/default_element_margin"
         app:layout_constraintEnd_toStartOf="@+id/guideCentralLogin"
         app:layout_constraintStart_toStartOf="@+id/guideCentralLogin"
         app:layout_constraintTop_toBottomOf="@+id/tilEmailLogin"
         app:passwordToggleEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tietContraseñaLogin"
+            android:id="@+id/tietPasswdLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Contraseña"
@@ -47,12 +47,12 @@
         android:id="@+id/btLogin"
         android:layout_width="140dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margen_elementos_default"
+        android:layout_marginTop="@dimen/default_element_margin"
         android:text="Login"
         app:layout_constraintEnd_toStartOf="@+id/guideCentralLogin"
         app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="@+id/guideCentralLogin"
-        app:layout_constraintTop_toBottomOf="@+id/tilContraseñaLogin" />
+        app:layout_constraintTop_toBottomOf="@+id/tilPasswdLogin" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideCentralLogin"
@@ -66,7 +66,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/tvMesajeRegistro"
+        android:id="@+id/tvRegisterMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -76,12 +76,12 @@
         app:layout_constraintTop_toBottomOf="@+id/btLogin" />
 
     <TextView
-        android:id="@+id/tvClickRegistro"
+        android:id="@+id/tvRegisterClick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:text="Registrate"
-        app:layout_constraintStart_toEndOf="@+id/tvMesajeRegistro"
+        app:layout_constraintStart_toEndOf="@+id/tvRegisterMessage"
         app:layout_constraintTop_toBottomOf="@+id/btLogin" />
 </androidx.constraintlayout.widget.ConstraintLayout>

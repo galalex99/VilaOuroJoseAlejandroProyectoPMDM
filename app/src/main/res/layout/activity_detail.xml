@@ -6,4 +6,31 @@
     android:layout_height="match_parent"
     tools:context=".activities.DetailActivity">
 
+    <ImageView
+        android:id="@+id/ivFilmImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="@dimen/default_element_margin"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/tvDetailFilmTitle"
+        android:layout_width="@dimen/default_element_size"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
+        android:text="TextView"
+        android:layout_margin="@dimen/default_element_margin"
+        app:layout_constraintStart_toEndOf="@+id/ivFilmImage"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvDetailFilmDirector"
+        android:layout_width="@dimen/default_element_size"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:layout_margin="@dimen/default_element_margin"
+        app:layout_constraintStart_toEndOf="@+id/ivFilmImage"
+        app:layout_constraintTop_toBottomOf="@+id/tvDetailFilmTitle" />
 </androidx.constraintlayout.widget.ConstraintLayout>

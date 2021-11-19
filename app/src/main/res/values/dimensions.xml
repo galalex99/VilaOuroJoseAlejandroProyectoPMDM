@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="margen_pantalla_default_horizontal">16dp</dimen>
-    <dimen name="margen_pantalla_default_vertical">16dp</dimen>
-    <dimen name="imagen_lista_tamanho">64dp</dimen>
-    <dimen name="margen_elementos_default">40dp</dimen>
+    <dimen name="default_horizontal_margin_screen">16dp</dimen>
+    <dimen name="default_vertical_margin_screen">16dp</dimen>
+    <dimen name="list_image_size">64dp</dimen>
+    <dimen name="default_element_margin">40dp</dimen>
 </resources>

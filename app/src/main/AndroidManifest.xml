@@ -11,7 +11,8 @@
         android:theme="@style/Theme.VilaOuroJoseAlejandroProyectoPMDM">
         <activity
             android:name=".activities.DetailActivity"
-            android:exported="true">
+            android:exported="true"
+            android:label="@string/film_detail_line">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.FilmsListActivity" />
@@ -19,7 +20,7 @@
         <activity
             android:name=".activities.FilmsListActivity"
             android:exported="true"
-            android:label="Lista de peliculas">
+            android:label="@string/list_line">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.LoginActivity" />

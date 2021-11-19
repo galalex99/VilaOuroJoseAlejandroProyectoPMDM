@@ -10,7 +10,7 @@ class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
-        btnRegistro= findViewById(R.id.btnRegistro)
+        btnRegistro= findViewById(R.id.btnRegister)
         btnRegistro.setOnClickListener(){
             super.onBackPressed()
         }
