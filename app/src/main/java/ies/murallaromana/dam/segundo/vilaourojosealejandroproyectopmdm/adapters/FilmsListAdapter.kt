@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.activities.DetailActivity
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.databinding.ItemFilmBinding
-import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.modelo.entities.Film
+import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.model.entities.Film
 
 class FilmsListAdapter(val films: List<Film>, val context: Context) :
     RecyclerView.Adapter<FilmsListAdapter.FilmHolder>() {

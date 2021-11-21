@@ -1,6 +1,6 @@
-package ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.modelo.dao
+package ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.model.dao
 
-import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.modelo.entities.Film
+import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.model.entities.Film
 
 class FilmsDaoMockImpl: FilmsDao {
     override fun getAll() =

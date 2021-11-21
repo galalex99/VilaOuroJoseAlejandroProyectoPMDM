@@ -1,4 +1,4 @@
-package ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.modelo.entities
+package ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.model.entities
 
 import java.io.Serializable
 

@@ -1,30 +1,49 @@
 package ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.activities
 
+import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.TextView
+import android.util.Log
+import android.util.Log.INFO
+import androidx.activity.OnBackPressedCallback
+import androidx.appcompat.app.AppCompatActivity
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.R
+import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.databinding.ActivityLoginBinding
+import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.utils.Preferences
+import okhttp3.internal.platform.Platform.INFO
+import java.util.logging.Level.INFO
 
 class LoginActivity : AppCompatActivity() {
-    private lateinit var tvClickRegistro: TextView
-    private lateinit var btClickLogin: Button
+    private lateinit var binding: ActivityLoginBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
-        val preferencesApp = getSharedPreferences("Preferences", MODE_PRIVATE)
-
-        tvClickRegistro = findViewById(R.id.tvRegisterClick)
-        tvClickRegistro.setOnClickListener() {
+        // Create binding
+        binding = ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        // use binding to get the buttosn and add an onclickListeners
+        binding.tvRegisterClick.setOnClickListener() {
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }
-        btClickLogin = findViewById(R.id.btLogin)
-        btClickLogin.setOnClickListener() {
+
+        binding.btLogin.setOnClickListener() {
             val intent = Intent(this, FilmsListActivity::class.java)
             startActivity(intent)
         }
+    }
 
+    override fun onBackPressed() {
+        moveTaskToBack(true);
+        // Create preferences reference
+        val preference = Preferences(this)
+
+        val userEmail = preference.retrieveData("email")
+        val userpasswd = preference.retrieveData("passwd")
+
+        Log.i("emailuser","user email"+ userEmail)
+        Log.i("passwduser","user passwd"+ userpasswd)
+
+        // testing shared puttind the user mail
+        binding.tietEmailLogin.setText(userEmail)
     }
 }
