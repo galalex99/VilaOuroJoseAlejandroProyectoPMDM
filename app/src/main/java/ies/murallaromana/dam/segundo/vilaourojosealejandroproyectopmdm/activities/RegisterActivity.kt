@@ -1,9 +1,7 @@
 package ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.activities
 
-import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.edit
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.databinding.ActivityRegisterBinding
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.utils.Preferences
 

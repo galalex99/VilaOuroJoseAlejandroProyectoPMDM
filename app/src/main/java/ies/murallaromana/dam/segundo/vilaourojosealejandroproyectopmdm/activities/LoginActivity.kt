@@ -1,17 +1,11 @@
 package ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.activities
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.util.Log.INFO
-import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
-import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.R
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.databinding.ActivityLoginBinding
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.utils.Preferences
-import okhttp3.internal.platform.Platform.INFO
-import java.util.logging.Level.INFO
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
@@ -33,7 +27,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        moveTaskToBack(true);
+        moveTaskToBack(true)
         // Create preferences reference
         val preference = Preferences(this)
 
