@@ -21,7 +21,8 @@ class RegisterActivity : AppCompatActivity() {
         // use binding to get the button and add an onclickListener
         binding.btnRegister.setOnClickListener(){
             // Save data in shared preferences when button clicked
-            preferences.saveData(binding.tietRegisterEmail.text.toString(),binding.tietRegisterPasswd.toString())
+
+            preferences.saveData(binding.tietRegisterEmail.text.toString(),binding.tietRegisterPasswd.text.toString())
             super.onBackPressed()
         }
 

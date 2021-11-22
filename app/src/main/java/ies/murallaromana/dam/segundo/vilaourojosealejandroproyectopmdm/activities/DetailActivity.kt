@@ -19,6 +19,7 @@ class DetailActivity : AppCompatActivity() {
             Picasso.get().load(infoFilm.url).into(binding.ivFilmImage)
             binding.tvDetailFilmTitle.setText(infoFilm.title)
         }else{
+            binding.tvDetailFilmDirector.editableText
             title = "New Film"
         }
 

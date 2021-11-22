@@ -84,7 +84,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tietRegisterPasswd"
+        android:id="@+id/tilRegisterPasswd"
         app:passwordToggleEnabled="true"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
@@ -94,7 +94,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tilRegisterEmail">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tilRegisterPasswd"
+            android:id="@+id/tietRegisterPasswd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
@@ -109,6 +109,6 @@
         android:text="Registro"
         app:layout_constraintEnd_toStartOf="@+id/guideCentralRegister"
         app:layout_constraintStart_toStartOf="@+id/guideCentralRegister"
-        app:layout_constraintTop_toBottomOf="@+id/tietRegisterPasswd" />
+        app:layout_constraintTop_toBottomOf="@+id/tilRegisterPasswd" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
