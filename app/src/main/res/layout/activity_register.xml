@@ -18,35 +18,23 @@
         app:layout_constraintGuide_percent="0.5"/>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilRegisterName"
+        android:id="@+id/tilRegisterFullName"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
+        android:background="@android:color/transparent"
+        app:boxBackgroundColor="@android:color/transparent"
+        app:startIconDrawable="@drawable/icon_person"
+        app:startIconTint="@color/secondaryColor"
         app:layout_constraintEnd_toStartOf="@+id/guideCentralRegister"
         app:layout_constraintStart_toStartOf="@+id/guideCentralRegister"
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tietRegisterName"
+            android:id="@+id/tietRegisterFullName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nombre" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilRegisterLastName"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        app:layout_constraintEnd_toStartOf="@+id/guideCentralRegister"
-        app:layout_constraintStart_toStartOf="@+id/guideCentralRegister"
-        app:layout_constraintTop_toBottomOf="@+id/tilRegisterName">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tietRegisterLastName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Apellidos" />
+            android:hint="Nombre y apellidos" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -54,9 +42,13 @@
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
+        android:background="@android:color/transparent"
+        app:boxBackgroundColor="@android:color/transparent"
+        app:startIconDrawable="@drawable/icon_birthdate"
+        app:startIconTint="@color/secondaryColor"
         app:layout_constraintEnd_toEndOf="@+id/guideCentralRegister"
         app:layout_constraintStart_toStartOf="@+id/guideCentralRegister"
-        app:layout_constraintTop_toBottomOf="@+id/tilRegisterLastName">
+        app:layout_constraintTop_toBottomOf="@+id/tilRegisterFullName">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tietRegisterBirthDate"
@@ -70,6 +62,10 @@
         android:id="@+id/tilRegisterEmail"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        app:boxBackgroundColor="@android:color/transparent"
+        app:startIconDrawable="@drawable/icon_email"
+        app:startIconTint="@color/secondaryColor"
         android:layout_marginTop="40dp"
         app:layout_constraintEnd_toEndOf="@+id/guideCentralRegister"
         app:layout_constraintStart_toStartOf="@+id/guideCentralRegister"
@@ -89,6 +85,10 @@
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
+        android:background="@android:color/transparent"
+        app:boxBackgroundColor="@android:color/transparent"
+        app:startIconDrawable="@drawable/icon_pass"
+        app:startIconTint="@color/secondaryColor"
         app:layout_constraintEnd_toEndOf="@+id/guideCentralRegister"
         app:layout_constraintStart_toStartOf="@+id/guideCentralRegister"
         app:layout_constraintTop_toBottomOf="@+id/tilRegisterEmail">
@@ -101,14 +101,38 @@
             android:hint="Contraseña" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilRepeatPassword"
+        app:passwordToggleEnabled="true"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:background="@android:color/transparent"
+        app:boxBackgroundColor="@android:color/transparent"
+        app:startIconDrawable="@drawable/icon_pass"
+        app:startIconTint="@color/secondaryColor"
+        app:layout_constraintEnd_toStartOf="@+id/guideCentralRegister"
+        app:layout_constraintStart_toStartOf="@id/guideCentralRegister"
+        app:layout_constraintTop_toBottomOf="@+id/tilRegisterPasswd">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tiet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:hint="Repite Contraseña" />
+    </com.google.android.material.textfield.TextInputLayout>
+
     <Button
         android:id="@+id/btnRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:text="Registro"
         app:layout_constraintEnd_toStartOf="@+id/guideCentralRegister"
+        app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toStartOf="@+id/guideCentralRegister"
-        app:layout_constraintTop_toBottomOf="@+id/tilRegisterPasswd" />
+        app:layout_constraintTop_toBottomOf="@+id/tilRepeatPassword" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

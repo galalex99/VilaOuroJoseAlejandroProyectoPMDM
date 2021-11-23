@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:paddingVertical="@dimen/default_vertical_margin_screen"
     android:paddingHorizontal="@dimen/default_horizontal_margin_screen"
+    android:background="@color/primaryLightColor"
     >
 
     <androidx.recyclerview.widget.RecyclerView
