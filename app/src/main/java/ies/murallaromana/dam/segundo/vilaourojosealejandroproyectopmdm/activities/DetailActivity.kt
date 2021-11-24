@@ -14,15 +14,13 @@ class DetailActivity : AppCompatActivity() {
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val infoFilm = intent.extras?.get("film") as Film
-        if (infoFilm!=null){
-            title = infoFilm.title
-            Picasso.get().load(infoFilm.url).into(binding.ivFilmImage)
+        title = infoFilm.title
+        Picasso.get().load(infoFilm.url).into(binding.ivFilmImage)
 
-            binding.tvDetailFilmTitle.text = infoFilm.title
-        }else{
-            binding.tvDetailFilmDirector.editableText
-            title = "New Film"
-        }
+        binding.tvDetailFilmDirector.text = infoFilm.director
+        binding.tvDetailFilmAge.text = infoFilm.ageRating.toString()
+        binding.tvDetailFilmLanguage.text = infoFilm.language
+        binding.tvDetailFilmMoviePremiere.text = infoFilm.moviePremiere
 
 
     }

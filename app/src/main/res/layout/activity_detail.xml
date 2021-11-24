@@ -15,7 +15,7 @@
         android:layout_marginTop="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDetailFilmTitle"
+        app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
@@ -26,6 +26,7 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="40dp"
         android:text="Director"
+        app:layout_constraintEnd_toStartOf="@+id/guideDetail"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivFilmImage" />
 
@@ -35,34 +36,26 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:text="Idioma"
-        app:layout_constraintStart_toStartOf="@+id/tvDetailFilmLabelDirector"
+        app:layout_constraintEnd_toStartOf="@+id/guideDetail"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvDetailFilmLabelDirector" />
 
     <TextView
         android:id="@+id/tvDetailFilmDirector"
         android:layout_width="@dimen/default_element_size"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
         app:layout_constraintBottom_toBottomOf="@+id/tvDetailFilmLabelDirector"
-        app:layout_constraintStart_toEndOf="@+id/tvDetailFilmLabelDirector"
-        app:layout_constraintTop_toTopOf="@+id/tvDetailFilmLabelDirector" />
-
-    <TextView
-        android:id="@+id/tvDetailFilmTitle"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/guideDetail"
+        app:layout_constraintTop_toTopOf="@+id/tvDetailFilmLabelDirector" />
 
     <TextView
         android:id="@+id/tvDetailFilmLanguage"
         android:layout_width="@dimen/default_element_size"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
         app:layout_constraintBottom_toBottomOf="@+id/tvDetailFilmLabelLanguage"
-        app:layout_constraintStart_toEndOf="@+id/tvDetailFilmLabelLanguage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideDetail"
         app:layout_constraintTop_toTopOf="@+id/tvDetailFilmLabelLanguage" />
 
     <TextView
@@ -71,16 +64,17 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:text="Fecha de lanzamiento"
-        app:layout_constraintStart_toStartOf="@+id/tvDetailFilmLabelLanguage"
+        app:layout_constraintEnd_toStartOf="@+id/guideDetail"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvDetailFilmLabelLanguage" />
 
     <TextView
         android:id="@+id/tvDetailFilmMoviePremiere"
         android:layout_width="@dimen/default_element_size"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
         app:layout_constraintBottom_toBottomOf="@+id/tvDetailFilmLabelMoviePremiere"
-        app:layout_constraintStart_toEndOf="@+id/tvDetailFilmLabelMoviePremiere"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideDetail"
         app:layout_constraintTop_toTopOf="@+id/tvDetailFilmLabelMoviePremiere" />
 
     <TextView
@@ -89,16 +83,17 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:text="Edad Recomendada"
-        app:layout_constraintTop_toBottomOf="@+id/tvDetailFilmLabelMoviePremiere"
-        tools:layout_editor_absoluteX="40dp" />
+        app:layout_constraintEnd_toStartOf="@+id/guideDetail"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvDetailFilmLabelMoviePremiere" />
 
     <TextView
         android:id="@+id/tvDetailFilmAge"
         android:layout_width="@dimen/default_element_size"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
         app:layout_constraintBottom_toBottomOf="@+id/tvDetailFilmLabelAge"
-        app:layout_constraintStart_toEndOf="@+id/tvDetailFilmLabelAge"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideDetail"
         app:layout_constraintTop_toTopOf="@+id/tvDetailFilmLabelAge" />
 
     <RatingBar
@@ -106,8 +101,15 @@
         android:layout_width="359dp"
         android:layout_height="70dp"
         android:numStars="5"
-        tools:layout_editor_absoluteX="-19dp"
-        tools:layout_editor_absoluteY="248dp" />
+        tools:layout_editor_absoluteX="26dp"
+        tools:layout_editor_absoluteY="493dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
