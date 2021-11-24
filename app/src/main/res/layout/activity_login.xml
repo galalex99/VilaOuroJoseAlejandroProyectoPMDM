@@ -12,13 +12,12 @@
         android:id="@+id/tilEmailLogin"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/default_element_margin"
-        app:startIconDrawable="@drawable/icon_email"
-        app:startIconTint="@color/secondaryColor"
+        android:layout_marginTop="40dp"
         app:layout_constraintEnd_toStartOf="@+id/guideCentralLogin"
         app:layout_constraintStart_toStartOf="@+id/guideCentralLogin"
-        app:layout_constraintTop_toTopOf="parent"
-        >
+        app:layout_constraintTop_toBottomOf="@+id/LabelAppName"
+        app:startIconDrawable="@drawable/icon_email"
+        app:startIconTint="@color/secondaryColor">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tietEmailLogin"
@@ -89,4 +88,12 @@
         android:text="Registrate"
         app:layout_constraintStart_toEndOf="@+id/tvRegisterMessage"
         app:layout_constraintTop_toBottomOf="@+id/btLogin" />
+
+    <TextView
+        android:id="@+id/LabelAppName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="GalaicoFilms"
+        tools:layout_editor_absoluteX="137dp"
+        tools:layout_editor_absoluteY="1dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

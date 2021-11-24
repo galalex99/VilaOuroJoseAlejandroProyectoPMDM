@@ -8,9 +8,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.databinding.ActivityLoginBinding
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.utils.Preferences
-import android.content.DialogInterface
-
-
 
 
 class LoginActivity : AppCompatActivity() {

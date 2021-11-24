@@ -10,19 +10,31 @@ import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.model.dao
 class FilmsListActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityListFilmsBinding
+    // we create a lateinit var por the adapter
+    companion object {
+       private lateinit var adapter :FilmsListAdapter
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // Usamos binding para linkear o .kt coa interfaz gráfica
+        // I use binding to link the .kt file with the graphic interface
         binding = ActivityListFilmsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val layoutManager = LinearLayoutManager(this)
         val peliculasDao = FilmsDaoMockImpl();
         val listaPeliculas = peliculasDao.getAll()
-        val adapter = FilmsListAdapter(listaPeliculas, this)
+         adapter = FilmsListAdapter(listaPeliculas, this)
+        adapter.notifyDataSetChanged()
         binding.rvFilmsList.adapter = adapter
         binding.rvFilmsList.layoutManager = layoutManager
 
     }
+
+    override fun onResume() {
+        super.onResume()
+        // we use this method when we delete a film to reload the list of films
+        adapter.notifyDataSetChanged()
+    }
+
 
 }
