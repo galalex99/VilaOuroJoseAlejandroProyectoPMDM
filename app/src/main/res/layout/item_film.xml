@@ -26,7 +26,7 @@
 
         <TextView
             android:id="@+id/tvFilmTitle"
-            android:layout_width="100dp"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="24dp"
@@ -38,19 +38,23 @@
             android:id="@+id/tvPunctuationTag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="48dp"
             android:text="Puntuación:"
             app:layout_constraintStart_toStartOf="@+id/tvFilmTitle"
             app:layout_constraintTop_toBottomOf="@+id/tvFilmTitle" />
 
-        <TextView
-            android:id="@+id/tvPunctuation"
+        <RatingBar
+            android:id="@+id/ratingFilm"
+            style="@style/Widget.AppCompat.RatingBar.Small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="32dp"
-            android:text="Texto da puntuación"
+            android:numStars="5"
+            android:stepSize="0.5"
+            android:layout_marginStart="44dp"
+            android:layout_marginBottom="3dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tvPunctuationTag"
             app:layout_constraintStart_toEndOf="@+id/tvPunctuationTag"
-            app:layout_constraintTop_toBottomOf="@+id/tvFilmTitle" />
+            app:layout_constraintTop_toTopOf="@+id/tvPunctuationTag" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

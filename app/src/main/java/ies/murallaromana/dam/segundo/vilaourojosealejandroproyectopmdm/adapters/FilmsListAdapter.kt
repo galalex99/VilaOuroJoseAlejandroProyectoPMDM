@@ -15,10 +15,9 @@ class FilmsListAdapter(val films: List<Film>, val context: Context) :
     class FilmHolder(val itemBinding: ItemFilmBinding) : RecyclerView.ViewHolder(itemBinding.root) {
 
         fun binder(film: Film) {
-            itemBinding.tvPunctuation.setText(film.score.toString())
+
             itemBinding.tvFilmTitle.setText(film.title)
-
-
+            itemBinding.ratingFilm.rating = (film.score/2).toFloat()
             Picasso.get().load(film.url).into(itemBinding.ivMovieCover)
 
             itemBinding.idItemFilm.setOnClickListener {

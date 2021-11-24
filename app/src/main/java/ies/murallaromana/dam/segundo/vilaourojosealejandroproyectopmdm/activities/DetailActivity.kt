@@ -21,7 +21,7 @@ class DetailActivity : AppCompatActivity() {
         binding.tvDetailFilmAge.text = infoFilm.ageRating.toString()
         binding.tvDetailFilmLanguage.text = infoFilm.language
         binding.tvDetailFilmMoviePremiere.text = infoFilm.moviePremiere
-
+        binding.ratingBarDetail.rating = (infoFilm.score/2).toFloat()
 
     }
 }

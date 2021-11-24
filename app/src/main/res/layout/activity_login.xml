@@ -15,7 +15,7 @@
         android:layout_marginTop="40dp"
         app:layout_constraintEnd_toStartOf="@+id/guideCentralLogin"
         app:layout_constraintStart_toStartOf="@+id/guideCentralLogin"
-        app:layout_constraintTop_toBottomOf="@+id/LabelAppName"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
         app:startIconDrawable="@drawable/icon_email"
         app:startIconTint="@color/secondaryColor">
 
@@ -77,6 +77,7 @@
         android:layout_marginEnd="20dp"
         android:text="No tienes cuenta ?"
         app:layout_constraintEnd_toEndOf="@id/guideCentralLogin"
+        app:layout_constraintStart_toStartOf="@+id/btLogin"
         app:layout_constraintTop_toBottomOf="@+id/btLogin" />
 
     <TextView
@@ -89,11 +90,14 @@
         app:layout_constraintStart_toEndOf="@+id/tvRegisterMessage"
         app:layout_constraintTop_toBottomOf="@+id/btLogin" />
 
-    <TextView
-        android:id="@+id/LabelAppName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="GalaicoFilms"
-        tools:layout_editor_absoluteX="137dp"
-        tools:layout_editor_absoluteY="1dp" />
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintEnd_toStartOf="@+id/guideCentralLogin"
+        app:layout_constraintStart_toStartOf="@+id/guideCentralLogin"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/trisquel" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

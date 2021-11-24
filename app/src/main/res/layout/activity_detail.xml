@@ -28,7 +28,7 @@
         android:text="Director"
         app:layout_constraintEnd_toStartOf="@+id/guideDetail"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivFilmImage" />
+        app:layout_constraintTop_toBottomOf="@id/ratingBarDetail" />
 
     <TextView
         android:id="@+id/tvDetailFilmLabelLanguage"
@@ -97,12 +97,15 @@
         app:layout_constraintTop_toTopOf="@+id/tvDetailFilmLabelAge" />
 
     <RatingBar
-        android:id="@+id/ratingBar"
-        android:layout_width="359dp"
-        android:layout_height="70dp"
+        android:id="@+id/ratingBarDetail"
+        style="@style/Widget.AppCompat.RatingBar.Indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
         android:numStars="5"
-        tools:layout_editor_absoluteX="26dp"
-        tools:layout_editor_absoluteY="493dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivFilmImage" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideDetail"

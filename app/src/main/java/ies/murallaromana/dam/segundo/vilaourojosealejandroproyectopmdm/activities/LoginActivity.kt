@@ -62,10 +62,8 @@ class LoginActivity : AppCompatActivity() {
         val preference = Preferences(this)
         userEmail = preference.retrieveData("email").toString()
         userPasswd = preference.retrieveData("passwd").toString()
-        Log.i("emailuser", "user email$userEmail")
-        Log.i("passwduser", "user passwd$userPasswd")
 
-        // testing shared puttind the user mail
+        // testing shared putting the user mail
         binding.tietEmailLogin.setText(userEmail)
     }
 
