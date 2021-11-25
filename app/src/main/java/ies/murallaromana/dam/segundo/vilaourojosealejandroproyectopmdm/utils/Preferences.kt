@@ -12,18 +12,10 @@ class Preferences(context: Context) {
 
     // Function to save register data
     fun saveData(email: String, pass: String) {
-        preferences.edit() {
+        preferences.edit {
             clear()
             putString("email", email)
             putString("passwd", pass)
-            commit()
-        }
-    }
-
-    // Fuction to clear preferences
-    fun clearData(){
-        preferences.edit() {
-            clear()
             commit()
         }
     }

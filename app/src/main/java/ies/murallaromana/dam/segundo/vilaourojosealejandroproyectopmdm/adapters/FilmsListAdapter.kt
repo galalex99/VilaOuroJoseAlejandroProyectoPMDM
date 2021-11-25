@@ -1,6 +1,5 @@
 package ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.adapters
 
-import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -10,13 +9,13 @@ import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.activitie
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.databinding.ItemFilmBinding
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.model.entities.Film
 
-class FilmsListAdapter(val films: List<Film>, val context: Context) :
+class FilmsListAdapter(private val films: List<Film>) :
     RecyclerView.Adapter<FilmsListAdapter.FilmHolder>() {
-    class FilmHolder(val itemBinding: ItemFilmBinding) : RecyclerView.ViewHolder(itemBinding.root) {
+    class FilmHolder(private val itemBinding: ItemFilmBinding) : RecyclerView.ViewHolder(itemBinding.root) {
 
         fun binder(film: Film) {
 
-            itemBinding.tvFilmTitle.setText(film.title)
+            itemBinding.tvFilmTitle.text = film.title
             itemBinding.ratingFilm.rating = (film.score/2).toFloat()
             Picasso.get().load(film.url).into(itemBinding.ivMovieCover)
 
@@ -36,7 +35,7 @@ class FilmsListAdapter(val films: List<Film>, val context: Context) :
     }
 
     override fun onBindViewHolder(holder: FilmHolder, position: Int) {
-        val film = films.get(position)
+        val film = films[position]
         holder.binder(film)
     }
 

@@ -12,6 +12,7 @@ class App : Application() {
     }
 
     override fun onCreate() {
+        // Change night mode to no
         super.onCreate()
 
         val dao = FilmsDaoMockImpl()

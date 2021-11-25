@@ -5,7 +5,7 @@
     <application
         android:allowBackup="true"
         android:name=".App"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/trisquel"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -13,7 +13,8 @@
         <activity
             android:name=".activities.DetailActivity"
             android:exported="true"
-            android:label="@string/film_detail_line">
+            android:label="@string/film_detail_line"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.FilmsListActivity" />
@@ -21,7 +22,8 @@
         <activity
             android:name=".activities.FilmsListActivity"
             android:exported="true"
-            android:label="@string/list_line">
+            android:label="@string/list_line"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.LoginActivity" />
@@ -29,7 +31,8 @@
         <activity
             android:name=".activities.RegisterActivity"
             android:exported="true"
-            android:label="@string/register_line">
+            android:label="@string/register_line"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.LoginActivity" />
@@ -37,7 +40,8 @@
         <activity
             android:name=".activities.LoginActivity"
             android:exported="true"
-            android:label="@string/login_line">
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

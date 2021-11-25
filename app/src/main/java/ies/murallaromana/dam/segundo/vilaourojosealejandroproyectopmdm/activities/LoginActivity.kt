@@ -1,11 +1,11 @@
 package ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.activities
 
-import android.R
+import android.R.string
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.databinding.ActivityLoginBinding
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.utils.Preferences
 
@@ -19,6 +19,9 @@ class LoginActivity : AppCompatActivity() {
     private var userPasswd = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        // Change the title to login since it was the app name to see the name on the launcher
+        title = "Login"
         // Clear preferences
         super.onCreate(savedInstanceState)
 
@@ -27,12 +30,12 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         // use binding to get the buttosn and add an onclickListeners
-        binding.tvRegisterClick.setOnClickListener() {
+        binding.tvRegisterClick.setOnClickListener {
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }
 
-        binding.btLogin.setOnClickListener() {
+        binding.btLogin.setOnClickListener {
             // call a validation fun
             if (loginValidation()) {
                 // if data is correct start list activity
@@ -43,9 +46,10 @@ class LoginActivity : AppCompatActivity() {
                 AlertDialog.Builder(this)
                     .setTitle("Credenciales incorrectas")
                     .setMessage("Tu usuario o contraseña son incorrectos")
-                    .setPositiveButton(R.string.yes
+                    .setPositiveButton(
+                        string.ok
                     ) // After clicking the accept button we clean the password
-                    { dialog, which ->
+                    { _, _ ->
                         binding.tietEmailLogin.setText("")
                         binding.tietPasswdLogin.setText("")
                     }.show()
@@ -67,7 +71,7 @@ class LoginActivity : AppCompatActivity() {
         binding.tietEmailLogin.setText(userEmail)
     }
 
-    fun loginValidation():Boolean{
-        return userEmail.equals(binding.tietEmailLogin.text.toString()) && userPasswd.equals(binding.tietPasswdLogin.text.toString())
+    private fun loginValidation():Boolean{
+        return userEmail == binding.tietEmailLogin.text.toString() && userPasswd == binding.tietPasswdLogin.text.toString()
     }
 }

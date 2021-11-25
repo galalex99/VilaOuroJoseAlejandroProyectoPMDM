@@ -18,7 +18,7 @@ class ValidationUtils {
 
 
     private fun validateRegister(context: Context, passwd:String, email: String): Boolean {
-        if (validateEmail(email) == false) {
+        if (!validateEmail(email)) {
             Toast.makeText(context, "El email con formato incorrecto", Toast.LENGTH_SHORT)
                 .show()
             return false

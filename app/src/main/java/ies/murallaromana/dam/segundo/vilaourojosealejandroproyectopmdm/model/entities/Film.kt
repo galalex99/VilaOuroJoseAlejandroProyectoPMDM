@@ -2,7 +2,7 @@ package ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.model.en
 
 import java.io.Serializable
 
-class Film (
+data class Film (
         var id: Long,
         var title: String,
         var director: String,
