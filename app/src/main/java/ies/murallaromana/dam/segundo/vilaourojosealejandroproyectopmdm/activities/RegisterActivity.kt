@@ -1,9 +1,11 @@
 package ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.activities
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.databinding.ActivityRegisterBinding
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.utils.Preferences
+import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.utils.ValidationUtils
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
@@ -19,11 +21,36 @@ class RegisterActivity : AppCompatActivity() {
         val preferences = Preferences(this)
 
         // use binding to get the button and add an onclickListener
-        binding.btnRegister.setOnClickListener(){
-            // Save data in shared preferences when button clicked
+        binding.btnRegister.setOnClickListener() {
+            val pass = binding.tietRegisterPasswd.text.toString()
+            val repeatPass = binding.tietRepeteatPassword.text.toString()
+            val email = binding.tietRegisterEmail.text.toString()
+            val error = ValidationUtils.validateRegister( pass, email, repeatPass)
 
-            preferences.saveData(binding.tietRegisterEmail.text.toString(),binding.tietRegisterPasswd.text.toString())
-            super.onBackPressed()
+            when (error) {
+                "El email con formato incorrecto" -> {
+                    Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
+                    binding.tietRegisterEmail.setText("")
+                }
+                "La contraseña con longitud incorrecta" -> {
+                    Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
+                    binding.tietRegisterPasswd.setText("")
+                }
+                "Los campos de contraseña y repite contraseña son distintos" -> {
+                    Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
+                    binding.tietRegisterPasswd.setText("")
+                    binding.tietRepeteatPassword.setText("")
+                }
+                else -> {
+                    // Save data in shared preferences when button clicked
+                    preferences.saveData(
+                        binding.tietRegisterEmail.text.toString(),
+                        binding.tietRegisterPasswd.text.toString()
+                    )
+                    super.onBackPressed()
+                }
+            }
+
         }
 
     }
