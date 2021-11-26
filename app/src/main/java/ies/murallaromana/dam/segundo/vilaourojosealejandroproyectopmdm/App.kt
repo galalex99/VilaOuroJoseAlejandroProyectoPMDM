@@ -8,7 +8,7 @@ import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.model.ent
 class App : Application() {
 
     companion object {
-        var films: List<Film> = ArrayList()
+        var films: ArrayList<Film> = ArrayList()
     }
 
     override fun onCreate() {
@@ -16,6 +16,6 @@ class App : Application() {
 
         val dao = FilmsDaoMockImpl()
 
-        films = dao.getAll()
+        films = dao.getAll() as ArrayList<Film>
     }
 }
