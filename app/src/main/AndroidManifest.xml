@@ -14,7 +14,13 @@
         android:theme="@style/Theme.VilaOuroJoseAlejandroProyectoPMDM">
         <activity
             android:name=".activities.AddEditActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:label="@string/film_add_edit_line"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.FilmsListActivity" />
+        </activity>
         <activity
             android:name=".activities.DetailActivity"
             android:exported="true"

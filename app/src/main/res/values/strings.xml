@@ -9,5 +9,6 @@
     <!-- Hints -->
     <string name="hint_Email">Email</string>
     <string name="film_detail_line">Film Detail</string>
+    <string name="film_add_edit_line">Añadir Pelicula</string>
 
 </resources>
