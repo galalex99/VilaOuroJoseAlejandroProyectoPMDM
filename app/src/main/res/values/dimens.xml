@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="default_padding_size">16dp</dimen>
     <dimen name="default_element_size">100dp</dimen>
+    <dimen name="default_button_size">140dp</dimen>
+    <dimen name="default_element_input">200dp</dimen>
+    <dimen name="big_element_input">250dp</dimen>
 </resources>

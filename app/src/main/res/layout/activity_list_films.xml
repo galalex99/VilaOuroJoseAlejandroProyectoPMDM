@@ -3,9 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingVertical="@dimen/default_vertical_margin_screen"
-    android:paddingHorizontal="@dimen/default_horizontal_margin_screen"
-    android:background="@color/primaryLightColor">
+    android:background="@color/primaryLightColor"
+    android:padding="@dimen/default_padding_size">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_films_list"
@@ -23,9 +22,9 @@
         android:layout_marginEnd="28dp"
         android:layout_marginBottom="28dp"
         android:clickable="true"
+        android:contentDescription="@string/floating_button_text_substitute"
+        android:focusable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_add"
-        android:contentDescription="@string/floating_button_text_substitute"
-        android:focusable="true" />
+        app:srcCompat="@android:drawable/ic_menu_add" />
 </androidx.constraintlayout.widget.ConstraintLayout>

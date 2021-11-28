@@ -6,8 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.RegisterActivity"
-    android:paddingHorizontal="@dimen/default_horizontal_margin_screen"
-    android:paddingVertical="@dimen/default_vertical_margin_screen"
+    android:padding="@dimen/default_padding_size"
     >
 
     <androidx.constraintlayout.widget.Guideline
@@ -19,9 +18,9 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilRegisterFullName"
-        android:layout_width="250dp"
+        android:layout_width="@dimen/big_element_input"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="@dimen/default_element_margin"
         android:background="@android:color/transparent"
         app:boxBackgroundColor="@android:color/transparent"
         app:startIconDrawable="@drawable/icon_person"
@@ -39,9 +38,9 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilRegisterBirthDate"
-        android:layout_width="250dp"
+        android:layout_width="@dimen/big_element_input"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="@dimen/default_element_margin"
         android:background="@android:color/transparent"
         app:boxBackgroundColor="@android:color/transparent"
         app:startIconDrawable="@drawable/icon_birthdate"
@@ -60,13 +59,13 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilRegisterEmail"
-        android:layout_width="250dp"
+        android:layout_width="@dimen/big_element_input"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
         app:boxBackgroundColor="@android:color/transparent"
         app:startIconDrawable="@drawable/icon_email"
         app:startIconTint="@color/secondaryColor"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="@dimen/default_element_margin"
         app:layout_constraintEnd_toEndOf="@+id/guideCentralRegister"
         app:layout_constraintStart_toStartOf="@+id/guideCentralRegister"
         app:layout_constraintTop_toBottomOf="@+id/tilRegisterBirthDate">
@@ -82,9 +81,9 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilRegisterPasswd"
         app:passwordToggleEnabled="true"
-        android:layout_width="250dp"
+        android:layout_width="@dimen/big_element_input"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="@dimen/default_element_margin"
         android:background="@android:color/transparent"
         app:boxBackgroundColor="@android:color/transparent"
         app:startIconDrawable="@drawable/icon_pass"
@@ -104,9 +103,9 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilRepeatPassword"
         app:passwordToggleEnabled="true"
-        android:layout_width="250dp"
+        android:layout_width="@dimen/big_element_input"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="@dimen/default_element_margin"
         android:background="@android:color/transparent"
         app:boxBackgroundColor="@android:color/transparent"
         app:startIconDrawable="@drawable/icon_pass"
@@ -127,7 +126,7 @@
         android:id="@+id/btnRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="@dimen/default_element_margin"
         android:text="@string/register_line"
         app:layout_constraintEnd_toStartOf="@+id/guideCentralRegister"
         app:layout_constraintHorizontal_bias="0.509"

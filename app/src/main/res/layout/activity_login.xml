@@ -5,14 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.LoginActivity"
-    android:paddingHorizontal="@dimen/default_horizontal_margin_screen"
-    android:paddingVertical="@dimen/default_vertical_margin_screen">
+    android:padding="@dimen/default_padding_size">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilEmailLogin"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="@dimen/default_element_margin"
         app:layout_constraintEnd_toStartOf="@+id/guideCentralLogin"
         app:layout_constraintStart_toStartOf="@+id/guideCentralLogin"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
@@ -49,7 +48,7 @@
 
     <Button
         android:id="@+id/btLogin"
-        android:layout_width="140dp"
+        android:layout_width="@dimen/default_button_size"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/default_element_margin"
         android:text="@string/login_line"
