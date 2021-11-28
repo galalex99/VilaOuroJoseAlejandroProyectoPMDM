@@ -22,7 +22,7 @@ class AddEditActivity : AppCompatActivity() {
         binding = ActivityAddEditBinding.inflate(layoutInflater)
         setContentView(binding.root)
         if (intent.extras?.get("film") == null) {
-            title = getString(R.string.film_add_title)
+            title = getString(R.string.film_edit_title)
         } else {
             film = (intent.extras?.get("film") as Film?)!!
             title = getString(R.string.film_edit_title) + film!!.title
