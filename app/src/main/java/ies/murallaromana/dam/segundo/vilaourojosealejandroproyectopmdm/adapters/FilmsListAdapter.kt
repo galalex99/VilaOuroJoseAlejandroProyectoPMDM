@@ -14,7 +14,6 @@ class FilmsListAdapter(private val films: List<Film>) :
     class FilmHolder(private val itemBinding: ItemFilmBinding) : RecyclerView.ViewHolder(itemBinding.root) {
 
         fun binder(film: Film) {
-
             itemBinding.tvFilmTitle.text = film.title
             itemBinding.ratingFilm.rating = (film.score/2).toFloat()
             Picasso.get().load(film.url).into(itemBinding.ivMovieCover)

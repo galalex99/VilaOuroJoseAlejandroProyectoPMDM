@@ -11,6 +11,7 @@ import androidx.appcompat.app.AlertDialog
 import com.squareup.picasso.Picasso
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.App.Companion.films
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.R
+import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.adapters.FilmsListAdapter
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.databinding.ActivityDetailBinding
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.model.entities.Film
 
@@ -39,8 +40,6 @@ class DetailActivity : AppCompatActivity() {
         infoFilm = intent.extras?.get("film") as Film
         title = infoFilm.title
         Picasso.get().load(infoFilm.url).into(binding.ivFilmImage)
-
-
         binding.tvDetailFilmDirector.text = infoFilm.director
         binding.tvDetailFilmAge.text = infoFilm.ageRating.toString()
         binding.tvDetailFilmLanguage.text = infoFilm.language
@@ -73,24 +72,32 @@ class DetailActivity : AppCompatActivity() {
         return when (item.itemId) {
             R.id.delete_action -> {
                 AlertDialog.Builder(this)
-                    .setTitle("Borrado Pelicula")
-                    .setMessage("Estas seguro de borrar:\n${infoFilm.title}\nNo se podra revertir el borrado")
+                    .setTitle(getString(R.string.film_delete_title))
+                    .setMessage(
+                        getString(R.string.film_delete_question) + "\n" + infoFilm.title + "\n" + getString(
+                            R.string.film_delete_question2
+                        )
+                    )
                     .setPositiveButton(
                         android.R.string.ok
                     ) // After clicking the accept button we remove the film
                     { _, _ ->
                         films.remove(infoFilm)
-                        Toast.makeText(this, "Película eliminada", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            this,
+                            getString(R.string.film_delete_confirmation),
+                            Toast.LENGTH_SHORT
+                        ).show()
                         finish()
-                    }.setNegativeButton("Cancelar", null).create()
+                    }.setNegativeButton(getString(R.string.cancel_button), null).create()
                     .show()
 
                 return true
             }
             R.id.edit_action -> {
                 AlertDialog.Builder(this)
-                    .setTitle("Edicion Pelicula")
-                    .setMessage("Quieres editar:\n${infoFilm.title}")
+                    .setTitle(getString(R.string.film_edit_title))
+                    .setMessage(getString(R.string.film_edit_message) + "\n" + infoFilm.title)
                     .setPositiveButton(
                         android.R.string.ok
                     ) // After clicking the accept button we edit the film
@@ -98,8 +105,12 @@ class DetailActivity : AppCompatActivity() {
                         val intent = Intent(this, AddEditActivity::class.java)
                         intent.putExtra("film", infoFilm)
                         startActivity(intent)
-                        Toast.makeText(this, "Edit film", Toast.LENGTH_SHORT).show()
-                    }.setNegativeButton("Cancelar", null).create()
+                        Toast.makeText(
+                            this,
+                            getString(R.string.film_edit_confirmation),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }.setNegativeButton(getString(R.string.cancel_button), null).create()
                     .show()
 
                 return true

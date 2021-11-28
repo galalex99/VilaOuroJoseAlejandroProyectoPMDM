@@ -23,7 +23,7 @@
             android:id="@+id/tietEmailLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/hint_Email"
+            android:hint="@string/email_hint"
             android:inputType="textEmailAddress" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -43,7 +43,7 @@
             android:id="@+id/tietPasswdLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Contraseña"
+            android:hint="@string/pass_hint"
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -52,7 +52,7 @@
         android:layout_width="140dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/default_element_margin"
-        android:text="Login"
+        android:text="@string/login_line"
         app:layout_constraintEnd_toStartOf="@+id/guideCentralLogin"
         app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="@+id/guideCentralLogin"
@@ -75,7 +75,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
-        android:text="No tienes cuenta ?"
+        android:text="@string/label_no_Account"
         app:layout_constraintEnd_toEndOf="@id/guideCentralLogin"
         app:layout_constraintStart_toStartOf="@+id/btLogin"
         app:layout_constraintTop_toBottomOf="@+id/btLogin" />
@@ -86,7 +86,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
-        android:text="Registrate"
+        android:text="@string/link_no_Account"
         app:layout_constraintStart_toEndOf="@+id/tvRegisterMessage"
         app:layout_constraintTop_toBottomOf="@+id/btLogin" />
 
@@ -98,6 +98,7 @@
         app:layout_constraintEnd_toStartOf="@+id/guideCentralLogin"
         app:layout_constraintStart_toStartOf="@+id/guideCentralLogin"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/trisquel" />
+        app:srcCompat="@drawable/trisquel"
+        android:contentDescription="@string/logo_doesn_load" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

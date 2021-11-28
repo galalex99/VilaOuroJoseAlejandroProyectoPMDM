@@ -5,18 +5,27 @@
         android:icon="@drawable/icon_save"
         android:orderInCategory="300"
         android:title="Save"
-        app:showAsAction="ifRoom"
+        app:showAsAction="always"
         />
     <item
         android:id="@+id/edit_action"
         android:icon="@drawable/icon_edit"
         android:orderInCategory="300"
         android:title="edit"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/call_action"
+        android:icon="@drawable/icon_phone"
+        android:orderInCategory="300"
+        android:title="delete"
+        android:visible="false"
+        app:showAsAction="always" />
     <item
         android:id="@+id/delete_action"
         android:icon="@drawable/icon_delete"
         android:orderInCategory="300"
         android:title="delete"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always" />
+
+
 </menu>

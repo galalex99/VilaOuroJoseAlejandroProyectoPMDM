@@ -22,7 +22,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@tools:sample/avatars" />
+            tools:srcCompat="@tools:sample/avatars"
+            android:contentDescription="@string/film_image_text_substitute" />
 
         <TextView
             android:id="@+id/tvFilmTitle"
@@ -30,7 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="24dp"
-            android:text="Titulo Pelicula"
+            android:text="@string/film_title_label"
             app:layout_constraintStart_toEndOf="@+id/ivMovieCover"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -39,7 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="48dp"
-            android:text="Puntuación:"
+            android:text="@string/film_score_line"
             app:layout_constraintStart_toStartOf="@+id/tvFilmTitle"
             app:layout_constraintTop_toBottomOf="@+id/tvFilmTitle" />
 

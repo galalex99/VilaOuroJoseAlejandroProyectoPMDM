@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">GalaicoFilms</string>
+    <string name="register_line">Register</string>
+    <string name="login_line">Login</string>
+    <string name="list_line">Film List</string>
+    <string name="film_detail_line">Film Detail</string>
+    <string name="film_add_edit_line">Add Film</string>
+    <string name="label_no_Account">You dont\' have account ?</string>
+    <string name="link_no_Account">Register now</string>
+    <string name="logo_doesn_load">Logo</string>
+    <string name="incorrect_credentials_title">Incorrect Credentials</string>
+    <string name="incorrect_credentials_message">Your username or password are incorrect</string>
+    <string name="name_surname">" Name and surname"</string>
+    <string name="birth_date">Birth date</string>
+    <string name="email_hint">Email</string>
+    <string name="pass_hint">Password</string>
+    <string name="repeat_password_hint">Repeat Password</string>
+    <string name="floating_button_text_substitute">Floating Button</string>
+    <string name="call_support_title">Call to support</string>
+    <string name="call_support_message">" You have doubts? call our support"</string>
+    <string name="cancel_button">Cancel</string>
+    <string name="film_title_label">Film Title</string>
+    <string name="film_score_line">Score:</string>
+    <string name="film_image_text_substitute">Text Image Movie</string>
+    <string name="film_delete_title">Delete Film</string>
+    <string name="film_delete_question">Are you sure about deleting:</string>
+    <string name="film_delete_question2">" Deletion cannot be reversed"</string>
+    <string name="film_delete_confirmation">Deleted film</string>
+    <string name="film_edit_title">Edit Film</string>
+    <string name="film_edit_message">Do you want to edit:</string>
+    <string name="director_label">Director</string>
+    <string name="film_edit_confirmation">" Editing Movie"</string>
+    <string name="language_label">Language</string>
+    <string name="premiere_label">Release date</string>
+    <string name="age_label">" Recommended age"</string>
+    <string name="film_save_title">Save Film</string>
+    <string name="film_save_message">Do you want to save the film ?</string>
+    <string name="generic_data_error">" Data not entered"</string>
+    <string name="score_data_error">You cannot enter scores greater than 10</string>
+    <string name="generic_data_check">" Check the data entered"</string>
+    <string name="film_save_confirmation">Film Saved</string>
+    <string name="hint_id">Id</string>
+    <string name="hint_url_image">Url of the image</string>
+</resources>

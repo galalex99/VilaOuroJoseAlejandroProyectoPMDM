@@ -14,7 +14,7 @@ class ValidationUtils {
 
 
          fun validateRegister(passwd:String, email: String, repeatPass: String): String {
-            if (!validateEmail(email)) {
+            if (!this.validateEmail(email)) {
                 return "El email con formato incorrecto"
             } else if (passwd.length < 8 || passwd.length > 16) {
                 return "La contraseña con longitud incorrecta"

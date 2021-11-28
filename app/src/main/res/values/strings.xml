@@ -1,14 +1,45 @@
 <resources>
     <string name="app_name">GalaicoFilms</string>
-
-
-    <!-- Etiquetas -->
     <string name="register_line">Registro</string>
-    <string name="login_line">Login</string>
+    <string name="login_line">Inicio</string>
     <string name="list_line">Lista de peliculas</string>
-    <!-- Hints -->
-    <string name="hint_Email">Email</string>
-    <string name="film_detail_line">Film Detail</string>
+    <string name="film_detail_line">Detalle Pelicula</string>
     <string name="film_add_edit_line">Añadir Pelicula</string>
+    <string name="label_no_Account">No tienes cuenta ?</string>
+    <string name="link_no_Account">Registrate</string>
+    <string name="logo_doesn_load">Logo</string>
+    <string name="incorrect_credentials_title">Credenciales incorrectas</string>
+    <string name="incorrect_credentials_message">Tu usuario o contraseña son incorrectos</string>
+    <string name="name_surname">Nombre y apellidos</string>
+    <string name="birth_date">Fecha de Nacimiento</string>
+    <string name="email_hint">Correo Electrónico</string>
+    <string name="pass_hint">Contraseña</string>
+    <string name="repeat_password_hint">Repite Contraseña</string>
+    <string name="floating_button_text_substitute">Boton Flotante</string>
+    <string name="call_support_title">Llamada a soporte</string>
+    <string name="call_support_message">Tienes dudas? llama a nuestro soporte</string>
+    <string name="film_title_label">Titulo Pelicula</string>
+    <string name="film_score_line">Puntuación:</string>
+    <string name="film_image_text_substitute">Texto Imagen Pelicula</string>
+    <string name="film_delete_title">Borrado Pelicula</string>
+    <string name="film_delete_question">Estas seguro de borrar:</string>
+    <string name="film_delete_question2">No se podra revertir el borrado</string>
+    <string name="film_delete_confirmation">Película eliminada</string>
+    <string name="film_edit_title">Edicion Pelicula</string>
+    <string name="film_edit_message">Quieres editar:</string>
+    <string name="film_edit_confirmation">Editando Pelicula</string>
+    <string name="director_label">Director</string>
+    <string name="language_label">Idioma</string>
+    <string name="premiere_label">Fecha de lanzamiento</string>
+    <string name="age_label">Edad Recomendada</string>
+    <string name="film_save_message">Quieres guardar la pelicula ?</string>
+    <string name="generic_data_error">Dato no introducido</string>
+    <string name="score_data_error">No puedes introducir notas mayores a 10</string>
+    <string name="generic_data_check">Comprueba los datos introducidos</string>
+    <string name="film_save_confirmation">Pelicula Guardada</string>
+    <string name="hint_id">Id</string>
+    <string name="hint_url_image">Url de la imagen</string>
+    <string name="cancel_button">Cancelar</string>
+    <string name="film_save_title">Guardado Pelicula</string>
 
 </resources>

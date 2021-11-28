@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.R
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.databinding.ActivityLoginBinding
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.utils.Preferences
 
@@ -21,7 +22,7 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         // Change the title to login since it was the app name to see the name on the launcher
-        title = "Login"
+        title = getString(R.string.login_line)
         // Clear preferences
         super.onCreate(savedInstanceState)
 
@@ -44,8 +45,8 @@ class LoginActivity : AppCompatActivity() {
             } else {
                 // Show error with AlertDialog
                 AlertDialog.Builder(this)
-                    .setTitle("Credenciales incorrectas")
-                    .setMessage("Tu usuario o contraseña son incorrectos")
+                    .setTitle(getString(R.string.incorrect_credentials_title))
+                    .setMessage(getString(R.string.incorrect_credentials_message))
                     .setPositiveButton(
                         string.ok
                     ) // After clicking the accept button we clean the password
@@ -71,7 +72,7 @@ class LoginActivity : AppCompatActivity() {
         binding.tietEmailLogin.setText(userEmail)
     }
 
-    private fun loginValidation():Boolean{
+    private fun loginValidation(): Boolean {
         return userEmail == binding.tietEmailLogin.text.toString() && userPasswd == binding.tietPasswdLogin.text.toString()
     }
 }
