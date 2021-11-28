@@ -167,7 +167,6 @@ class AddEditActivity : AppCompatActivity() {
                                 Intent(this, FilmsListActivity::class.java)
                             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                             startActivity(intent)
-                            finish()
                         }
                     }.setNegativeButton(getString(R.string.cancel_button), null).create()
                     .show()
