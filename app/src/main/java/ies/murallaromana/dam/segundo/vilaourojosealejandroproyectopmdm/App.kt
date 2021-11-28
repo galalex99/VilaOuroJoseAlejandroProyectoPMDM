@@ -16,6 +16,6 @@ class App : Application() {
 
         val dao = FilmsDaoMockImpl()
 
-        films = dao.getAll() as ArrayList<Film>
+        films = dao.getAll()
     }
 }
