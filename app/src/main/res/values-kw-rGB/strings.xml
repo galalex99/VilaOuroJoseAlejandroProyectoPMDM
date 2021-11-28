@@ -42,4 +42,7 @@
     <string name="film_save_confirmation">Film Saved</string>
     <string name="hint_id">Id</string>
     <string name="hint_url_image">Url of the image</string>
+    <string name="email_format_error">The email is malformed</string>
+    <string name="pass_longitude_error">The password has wrong lenth</string>
+    <string name="pass_coincidence_error">Password and repeat password fields are different</string>
 </resources>

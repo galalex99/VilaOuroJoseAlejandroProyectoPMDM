@@ -41,5 +41,8 @@
     <string name="hint_url_image">Url de la imagen</string>
     <string name="cancel_button">Cancelar</string>
     <string name="film_save_title">Guardado Pelicula</string>
+    <string name="email_format_error">El email tiene formato incorrecto</string>
+    <string name="pass_longitude_error">La contraseña tiene longitud incorrecta</string>
+    <string name="pass_coincidence_error">Los campos de contraseña y repite contraseña son distintos</string>
 
 </resources>

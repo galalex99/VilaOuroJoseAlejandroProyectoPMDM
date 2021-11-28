@@ -3,6 +3,7 @@ package ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.activiti
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.R
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.databinding.ActivityRegisterBinding
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.utils.Preferences
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.utils.ValidationUtils
@@ -25,18 +26,18 @@ class RegisterActivity : AppCompatActivity() {
             val pass = binding.tietRegisterPasswd.text.toString()
             val repeatPass = binding.tietRepeteatPassword.text.toString()
             val email = binding.tietRegisterEmail.text.toString()
-            val error = ValidationUtils.validateRegister( pass, email, repeatPass)
+            val error = ValidationUtils.validateRegister(this, pass, email, repeatPass)
 
             when (error) {
-                "El email con formato incorrecto" -> {
+                getString(R.string.email_format_error) -> {
                     Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
                     binding.tietRegisterEmail.setText("")
                 }
-                "La contraseña con longitud incorrecta" -> {
+                getString(R.string.pass_longitude_error) -> {
                     Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
                     binding.tietRegisterPasswd.setText("")
                 }
-                "Los campos de contraseña y repite contraseña son distintos" -> {
+                getString(R.string.pass_coincidence_error) -> {
                     Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
                     binding.tietRegisterPasswd.setText("")
                     binding.tietRepeteatPassword.setText("")

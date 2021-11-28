@@ -1,6 +1,8 @@
 package ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.utils
 
+import android.content.Context
 import android.util.Patterns
+import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.R
 import java.util.regex.Pattern
 
 class ValidationUtils {
@@ -13,13 +15,13 @@ class ValidationUtils {
         }
 
 
-         fun validateRegister(passwd:String, email: String, repeatPass: String): String {
+         fun validateRegister(contexto: Context, passwd:String, email: String, repeatPass: String): String {
             if (!this.validateEmail(email)) {
-                return "El email con formato incorrecto"
+                return contexto.getString(R.string.email_format_error)
             } else if (passwd.length < 8 || passwd.length > 16) {
-                return "La contraseña con longitud incorrecta"
+                return contexto.getString(R.string.pass_longitude_error)
             }else if(passwd != repeatPass){
-                return  "Los campos de contraseña y repite contraseña son distintos"
+                return  contexto.getString(R.string.pass_coincidence_error)
             }
             return ""
         }
