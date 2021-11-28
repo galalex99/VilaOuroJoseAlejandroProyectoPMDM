@@ -7,16 +7,16 @@
         android:title="Save"
         app:showAsAction="ifRoom"
         />
-    <item android:id="@+id/edit_action"
+    <item
+        android:id="@+id/edit_action"
         android:icon="@drawable/icon_edit"
         android:orderInCategory="300"
         android:title="edit"
-        app:showAsAction="ifRoom"
-        />
-    <item android:id="@+id/delete_action"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/delete_action"
         android:icon="@drawable/icon_delete"
         android:orderInCategory="300"
         android:title="delete"
-        app:showAsAction="ifRoom"
-        />
+        app:showAsAction="ifRoom" />
 </menu>

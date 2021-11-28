@@ -1,12 +1,15 @@
 package ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.squareup.picasso.Picasso
+import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.App.Companion.films
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.R
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.databinding.ActivityDetailBinding
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.model.entities.Film
@@ -25,6 +28,7 @@ class DetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        infoFilm = intent.extras?.get("film") as Film
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -32,7 +36,7 @@ class DetailActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        val infoFilm = intent.extras?.get("film") as Film
+        infoFilm = intent.extras?.get("film") as Film
         title = infoFilm.title
         Picasso.get().load(infoFilm.url).into(binding.ivFilmImage)
 
@@ -61,7 +65,6 @@ class DetailActivity : AppCompatActivity() {
             menuItemEdit.isVisible = true
             menuItemDelete.isVisible = true
             menuItemSave.isVisible = false
-
         }
         return super.onPrepareOptionsMenu(menu)
     }
@@ -71,15 +74,37 @@ class DetailActivity : AppCompatActivity() {
             R.id.delete_action -> {
                 AlertDialog.Builder(this)
                     .setTitle("Borrado Pelicula")
-                    .setMessage("Estas seguro de borrar ${infoFilm.title}, No se podra revertir el borrado")
+                    .setMessage("Estas seguro de borrar:\n${infoFilm.title}\nNo se podra revertir el borrado")
                     .setPositiveButton(
                         android.R.string.ok
                     ) // After clicking the accept button we remove the film
                     { _, _ ->
+                        films.remove(infoFilm)
+                        Toast.makeText(this, "Película eliminada", Toast.LENGTH_SHORT).show()
+                        finish()
+                    }.setNegativeButton("Cancelar", null).create()
+                    .show()
 
-                    }.show()
                 return true
             }
+            R.id.edit_action -> {
+                AlertDialog.Builder(this)
+                    .setTitle("Edicion Pelicula")
+                    .setMessage("Quieres editar:\n${infoFilm.title}")
+                    .setPositiveButton(
+                        android.R.string.ok
+                    ) // After clicking the accept button we edit the film
+                    { _, _ ->
+                        val intent = Intent(this, AddEditActivity::class.java)
+                        intent.putExtra("film", infoFilm)
+                        startActivity(intent)
+                        Toast.makeText(this, "Edit film", Toast.LENGTH_SHORT).show()
+                    }.setNegativeButton("Cancelar", null).create()
+                    .show()
+
+                return true
+            }
+
 
             else -> super.onOptionsItemSelected(item)
         }

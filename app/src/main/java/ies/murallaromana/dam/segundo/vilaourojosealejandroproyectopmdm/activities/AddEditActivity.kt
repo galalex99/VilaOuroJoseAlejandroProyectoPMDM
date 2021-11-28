@@ -4,17 +4,24 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.R
+import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.databinding.ActivityAddEditBinding
+import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.databinding.ActivityDetailBinding
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.model.entities.Film
+
+private lateinit var binding: ActivityAddEditBinding
+private lateinit var film: Film
 
 class AddEditActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        film = intent.extras?.get("film") as Film
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_add_edit)
+        binding = ActivityAddEditBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         if (intent.extras?.get("film") == null) {
 
         } else {
-            val pelicula = intent.extras?.get("film") as Film
-            title = "Editar ${pelicula.title}"
+
+            title = "Editar ${film.title}"
         }
     }
 
@@ -31,17 +38,9 @@ class AddEditActivity : AppCompatActivity() {
 
 
     override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
-        if (intent.extras?.get("film") != null) {
-            DetailActivity.menuItemEdit.isVisible = false
-            DetailActivity.menuItemSave.isVisible = true
-            DetailActivity.menuItemDelete.isVisible = true
-
-        }else{
-            DetailActivity.menuItemEdit.isVisible = false
-            DetailActivity.menuItemSave.isVisible = true
-            DetailActivity.menuItemDelete.isVisible = false
-        }
-
+        DetailActivity.menuItemEdit.isVisible = false
+        DetailActivity.menuItemSave.isVisible = true
+        DetailActivity.menuItemDelete.isVisible = false
 
         return super.onPrepareOptionsMenu(menu)
     }
