@@ -23,12 +23,17 @@ From the register you can go back to the login.
 ## List Screen
 ![This was supposed to be the an image of the List screen](ReadmeImages/ListScreen.png)
 
-This screen has a list of the films if you click any of the images it opens a more detailed
-screen of the film. From this screen you can also create new films clicking the round floating
-button and call the 'support' if you have problems with the app.
+This screen has a list of the films.
+
+### Functionalities
+- Open a more detailed view of the film clicking the item of the list
+- Creating a new film clicking the round floating button
+- Call support if you have problems with the app clicking the phone icon
 
 ## Detail Screen
 ![This was supposed to be the an image of the List screen](ReadmeImages/DetailScreen.png)
 
-This screen has the more detailed view of the film. Here you can edit the film clicking on the
-pencil icon or delete the film with the trash icon.
+This screen has the more detailed view of the film.
+### Functionalities
+- Edit the film clicking the pencil icon
+- Delete the film clicking the trashcan icon
