@@ -23,7 +23,6 @@ class FilmsListAdapter(private val films: List<Film>) :
                 intent.putExtra("film",film)
                 itemBinding.root.context.startActivity(intent)
             }
-
         }
     }
 
