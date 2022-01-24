@@ -5,6 +5,6 @@ modification features in this case i created a films app where you can save/edit
 app was working against an Api that our teacher created for this project.
 
 ## Login Screen
-![This was supposed to be the an image of the login screen](D:\vilourjos\Asignaturas\PMDM\VilaOuroJoseAlejandroProyectoPMDM\ReadmeImages\LoginScreen.png)
+![This was supposed to be the an image of the login screen](ReadmeImages/LoginScreen.png)
 
 
