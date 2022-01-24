@@ -15,6 +15,10 @@ The login also has a link to the register screen
 
 Again a simple design, the register validation also works against the api.
 From the register you can go back to the login.
+### Validations before registering
+- Check that the password has more than 8 characters and less that 16
+- Check that the birthdate has date format
+- Check that both password fields have the same content
 
 ## List Screen
 ![This was supposed to be the an image of the List screen](ReadmeImages/ListScreen.png)
