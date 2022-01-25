@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -12,9 +13,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.App
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.R
+import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.RetrofitClient
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.adapters.FilmsListAdapter
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.databinding.ActivityListFilmsBinding
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.model.dao.FilmsDaoMockImpl
+import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.model.entities.Film
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class FilmsListActivity : AppCompatActivity() {
 
@@ -33,6 +39,22 @@ class FilmsListActivity : AppCompatActivity() {
         // I use binding to link the .kt file with the graphic interface
         binding = ActivityListFilmsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // context of the film list activity
+        val context = this
+
+        // Retrofilt retrieve data
+        val apiCall: Call<List<Film>> = RetrofitClient.apiRetrofit.getFilms()
+        apiCall.enqueue(object : Callback<List<Film>> {
+            override fun onResponse(call: Call<List<Film>>, response: Response<List<Film>>) {
+                Toast.makeText(context,response.body().toString(),Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onFailure(call: Call<List<Film>>, t: Throwable) {
+               Log.d("Test",t.message.toString())
+            }
+        })
+
 
         val layoutManager = LinearLayoutManager(this)
         val listaPeliculas = App.films

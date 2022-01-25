@@ -1,5 +1,6 @@
 package ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.model.entities
 
+import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 data class Film (
@@ -8,7 +9,7 @@ data class Film (
         var director: String,
         var language: String,
         var moviePremiere: String,
-        var score: Double,
+        @SerializedName("rating") var score: Double,
         var ageRating: Short,
         var url: String
 ) : Serializable

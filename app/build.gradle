@@ -41,6 +41,11 @@ dependencies {
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.1'
 
+    // Implementation retrofit and api related things
+    implementation 'com.squareup.retrofit2:retrofit:2.7.2'
+    implementation 'com.squareup.retrofit2:converter-gson:2.7.2'
+    implementation 'com.squareup.okhttp3:okhttp:3.10.0'
+
     // Implementation Load Images
     implementation 'com.squareup.picasso:picasso:2.71828'
     testImplementation 'junit:junit:4.+'
