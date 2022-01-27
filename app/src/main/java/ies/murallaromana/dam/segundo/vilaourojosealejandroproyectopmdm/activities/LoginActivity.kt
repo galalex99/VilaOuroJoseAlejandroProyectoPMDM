@@ -3,12 +3,20 @@ package ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.activiti
 import android.R.string
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.R
+import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.RetrofitClient
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.databinding.ActivityLoginBinding
+import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.model.entities.Token
+import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.model.entities.User
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.utils.Preferences
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class LoginActivity : AppCompatActivity() {
@@ -25,7 +33,7 @@ class LoginActivity : AppCompatActivity() {
         title = getString(R.string.login_line)
         // Clear preferences
         super.onCreate(savedInstanceState)
-
+        val LoginContext = this
         // Create binding
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -39,6 +47,28 @@ class LoginActivity : AppCompatActivity() {
         binding.btLogin.setOnClickListener {
             // call a validation fun
             if (loginValidation()) {
+                // Create a user var and login on api with
+                var user = User(userEmail, userPasswd)
+                val loginCall = RetrofitClient.apiRetrofit.login(user)
+                loginCall.enqueue(object : Callback<Token> {
+                    override fun onFailure(call: Call<Token>, t: Throwable) {
+                     Log.d("Login OnFailure",t.toString())
+                    }
+
+                    override fun onResponse(call: Call<Token>, response: Response<Token>) {
+                        Log.d("Login OnResponse ",response.toString())
+
+                        if(response.code() in 201..298){
+                            Toast.makeText(LoginContext,"Error na autenticacion, intenta mais tarde",Toast.LENGTH_SHORT).show()
+                        }else{
+                            val token = response.body()?.tokenstr
+                            Log.d("respuesta: token:", token.orEmpty())
+                        }
+
+                    }
+
+
+                })
                 // if data is correct start list activity
                 val intent = Intent(this, FilmsListActivity::class.java)
                 startActivity(intent)
