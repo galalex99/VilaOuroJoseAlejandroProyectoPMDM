@@ -139,7 +139,9 @@ class AddEditActivity : AppCompatActivity() {
                                         premiere,
                                         score.toDouble(),
                                         age.toShort(),
-                                        url
+                                        url,
+                                        10
+
                                     )
                                 )
                             } else {
@@ -152,7 +154,8 @@ class AddEditActivity : AppCompatActivity() {
                                     premiere,
                                     score.toDouble(),
                                     age.toShort(),
-                                    url
+                                    url,
+                                    10
                                 )
                                 films[index] = editedFilm
 

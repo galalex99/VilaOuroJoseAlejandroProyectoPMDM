@@ -44,5 +44,6 @@
     <string name="email_format_error">El email tiene formato incorrecto</string>
     <string name="pass_longitude_error">La contraseña tiene longitud incorrecta</string>
     <string name="pass_coincidence_error">Los campos de contraseña y repite contraseña son distintos</string>
+    <string name="Film_duration">Duracion pelicula</string>
 
 </resources>

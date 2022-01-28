@@ -45,4 +45,5 @@
     <string name="email_format_error">The email is malformed</string>
     <string name="pass_longitude_error">The password has wrong lenth</string>
     <string name="pass_coincidence_error">Password and repeat password fields are different</string>
+    <string name="Film_duration">Film Duration</string>
 </resources>

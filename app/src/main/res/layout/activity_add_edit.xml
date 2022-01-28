@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     android:padding="@dimen/default_padding_size"
     tools:context=".activities.AddEditActivity">
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -142,6 +141,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/hint_url_image" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilEditAddFilmDuration"
+            android:layout_width="@dimen/default_element_input"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_element_margin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tilEditAddUrl">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tietEditAddFilmDuration"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_url_image" />
+
         </com.google.android.material.textfield.TextInputLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

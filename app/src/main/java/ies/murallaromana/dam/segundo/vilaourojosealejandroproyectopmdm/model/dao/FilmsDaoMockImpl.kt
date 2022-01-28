@@ -15,7 +15,8 @@ class FilmsDaoMockImpl : FilmsDao {
                     "15/10/2021",
                     6.8,
                     13,
-                    "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/2jVVDtDaeMxmcvrz2SNyhMcYtWc.jpg"),
+                    "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/2jVVDtDaeMxmcvrz2SNyhMcYtWc.jpg",
+                    10),
                 Film(2,
                     "Dune",
                     "Denis Villeneuve",
@@ -23,7 +24,8 @@ class FilmsDaoMockImpl : FilmsDao {
                     "17/09/2021",
                     8.0,
                     1,
-                    "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/m6XWQpT0biTpe5wBGWd60RXmtEX.jpg"),
+                    "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/m6XWQpT0biTpe5wBGWd60RXmtEX.jpg",
+                    10),
                 Film(3,
                     "Free Guy",
                     "Shawn Levy",
@@ -31,7 +33,8 @@ class FilmsDaoMockImpl : FilmsDao {
                     "18/08/2021",
                     7.8,
                     12,
-                    "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/suaooqn1Mnv60V19MoGxneMupJs.jpg"),
+                    "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/suaooqn1Mnv60V19MoGxneMupJs.jpg",
+                    10),
                 Film(4,
                     "Halloween Kills",
                     "David Gordon Green",
@@ -39,7 +42,8 @@ class FilmsDaoMockImpl : FilmsDao {
                     "22/10/2021",
                     7.0,
                     18,
-                    "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/qmJGd5IfURq8iPQ9KF3les47vFS.jpg"),
+                    "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/qmJGd5IfURq8iPQ9KF3les47vFS.jpg",
+                    10),
                 Film(5,
                     "Coco",
                     "Lee Unkrich",
@@ -47,7 +51,8 @@ class FilmsDaoMockImpl : FilmsDao {
                     "01/10/2017",
                     8.2,
                     0,
-                    "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/48mdKcYKIVfRtoSCqhkY8xMzJlA.jpg")
+                    "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/48mdKcYKIVfRtoSCqhkY8xMzJlA.jpg",
+                    10)
             ))
         return lista
     }

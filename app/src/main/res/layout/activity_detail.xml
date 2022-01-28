@@ -7,6 +7,7 @@
     tools:context=".activities.DetailActivity"
     android:backgroundTint="@color/primaryLightColor">
 
+
     <ImageView
         android:id="@+id/ivFilmImage"
         android:layout_width="200dp"
@@ -97,6 +98,25 @@
         app:layout_constraintStart_toStartOf="@+id/guideDetail"
         app:layout_constraintTop_toTopOf="@+id/tvDetailFilmLabelAge" />
 
+    <TextView
+        android:id="@+id/tvDetailFilmLabelDuration"
+        android:layout_width="@dimen/default_element_size"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_element_margin"
+        android:text="@string/Film_duration"
+        app:layout_constraintEnd_toStartOf="@+id/guideDetail"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvDetailFilmLabelAge" />
+
+    <TextView
+        android:id="@+id/tvDetailFilmDuration"
+        android:layout_width="@dimen/default_element_size"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideDetail"
+        app:layout_constraintBottom_toBottomOf="@+id/tvDetailFilmLabelDuration"
+        app:layout_constraintTop_toTopOf="@+id/tvDetailFilmLabelDuration" />
+
     <RatingBar
         android:id="@+id/ratingBarDetail"
         style="@style/Widget.AppCompat.RatingBar.Indicator"
@@ -107,6 +127,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivFilmImage" />
+
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideDetail"

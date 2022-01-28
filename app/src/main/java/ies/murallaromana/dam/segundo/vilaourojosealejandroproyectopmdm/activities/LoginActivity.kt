@@ -22,11 +22,6 @@ import retrofit2.Response
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
 
-
-    // Initialize empty user and passwd
-    private var userEmail = ""
-    private var userPasswd = ""
-
     override fun onCreate(savedInstanceState: Bundle?) {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         // Change the title to login since it was the app name to see the name on the launcher
@@ -43,26 +38,29 @@ class LoginActivity : AppCompatActivity() {
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }
-
+        var loginCorrecto:Boolean = false
         binding.btLogin.setOnClickListener {
             // call a validation fun
-            if (loginValidation()) {
+            //if (loginValidation()) {
                 // Create a user var and login on api with
-                var user = User(userEmail, userPasswd)
+                var user = User(binding.tietEmailLogin.text.toString(), binding.tietPasswdLogin.text.toString())
                 val loginCall = RetrofitClient.apiRetrofit.login(user)
                 loginCall.enqueue(object : Callback<Token> {
                     override fun onFailure(call: Call<Token>, t: Throwable) {
                      Log.d("Login OnFailure",t.toString())
+                        loginCorrecto=false
                     }
 
                     override fun onResponse(call: Call<Token>, response: Response<Token>) {
                         Log.d("Login OnResponse ",response.toString())
 
-                        if(response.code() in 201..298){
-                            Toast.makeText(LoginContext,"Error na autenticacion, intenta mais tarde",Toast.LENGTH_SHORT).show()
-                        }else{
+                        if(response.code() in 200..299){
                             val token = response.body()?.tokenstr
                             Log.d("respuesta: token:", token.orEmpty())
+                                loginCorrecto=true
+                        }else{
+                            Toast.makeText(LoginContext,"Error na autenticacion, intenta mais tarde",Toast.LENGTH_SHORT).show()
+                            loginCorrecto=false
                         }
 
                     }
@@ -70,9 +68,10 @@ class LoginActivity : AppCompatActivity() {
 
                 })
                 // if data is correct start list activity
+                if(loginCorrecto){
                 val intent = Intent(this, FilmsListActivity::class.java)
-                startActivity(intent)
-            } else {
+                startActivity(intent)}
+           /* } else {
                 // Show error with AlertDialog
                 AlertDialog.Builder(this)
                     .setTitle(getString(R.string.incorrect_credentials_title))
@@ -86,23 +85,12 @@ class LoginActivity : AppCompatActivity() {
                     }.show()
 
 
-            }
+            }*/
         }
     }
 
     // Method called when it returns from the register to the login
     override fun onResume() {
         super.onResume()
-        // Initialize preferences
-        val preference = Preferences(this)
-        userEmail = preference.retrieveData("email").toString()
-        userPasswd = preference.retrieveData("passwd").toString()
-
-        // testing shared putting the user mail
-        binding.tietEmailLogin.setText(userEmail)
-    }
-
-    private fun loginValidation(): Boolean {
-        return userEmail == binding.tietEmailLogin.text.toString() && userPasswd == binding.tietPasswdLogin.text.toString()
     }
 }

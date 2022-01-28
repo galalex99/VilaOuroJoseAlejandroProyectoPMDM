@@ -5,23 +5,23 @@ import androidx.core.content.edit
 
 class Preferences(context: Context) {
 
-    private val fileNameSharedPreferences = "SharedPrefencesPMDM"
+    private val fileNameSharedPreferences = "SharedPreferencesPMDM"
 
     //  Create shared preferences
-    private val preferences = context.getSharedPreferences(fileNameSharedPreferences, Context.MODE_PRIVATE)
+    private val preferences =
+        context.getSharedPreferences(fileNameSharedPreferences, Context.MODE_PRIVATE)
 
     // Function to save register data
-    fun saveData(email: String, pass: String) {
+    fun saveData(token: String) {
         preferences.edit {
             clear()
-            putString("email", email)
-            putString("passwd", pass)
+            putString("token", token)
             commit()
         }
     }
 
-    // Fuction to retrieve data
-    fun retrieveData(dataKey:String):String?{
-        return preferences.getString(dataKey,null)
+    // Function to retrieve data
+    fun retrieveData(dataKey: String): String? {
+        return preferences.getString(dataKey, null)
     }
 }

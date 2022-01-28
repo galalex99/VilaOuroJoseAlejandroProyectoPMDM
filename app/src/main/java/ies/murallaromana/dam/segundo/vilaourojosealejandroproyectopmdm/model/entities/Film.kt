@@ -6,12 +6,13 @@ import java.io.Serializable
 data class Film (
         var id: Long,
         var title: String,
-        var director: String,
-        var language: String,
-        var moviePremiere: String,
+        @SerializedName("directorFirstname")var director: String,
+        @SerializedName("country") var language: String,
+        @SerializedName("releaseYear")var moviePremiere: String,
         @SerializedName("rating") var score: Double,
         var ageRating: Short,
-        var url: String
+        @SerializedName("imageUrl")var url: String,
+        var duration:Int
 ) : Serializable
 
 
