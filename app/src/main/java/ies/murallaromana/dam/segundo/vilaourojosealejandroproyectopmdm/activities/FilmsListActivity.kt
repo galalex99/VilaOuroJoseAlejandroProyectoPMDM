@@ -18,6 +18,8 @@ import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.adapters.
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.databinding.ActivityListFilmsBinding
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.model.dao.FilmsDaoMockImpl
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.model.entities.Film
+import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.model.entities.Token
+import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.utils.Preferences
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -43,17 +45,21 @@ class FilmsListActivity : AppCompatActivity() {
         // context of the film list activity
         val context = this
 
-        // Retrofilt retrieve data
-        val apiCall: Call<List<Film>> = RetrofitClient.apiRetrofit.getFilms()
-        apiCall.enqueue(object : Callback<List<Film>> {
-            override fun onResponse(call: Call<List<Film>>, response: Response<List<Film>>) {
-                Toast.makeText(context,response.body().toString(),Toast.LENGTH_SHORT).show()
-            }
+        val preferences = Preferences(this)
+        val token = preferences.retrieveData("token")
+        if (!token.isNullOrEmpty()) {
+            // Retrofilt retrieve data
+            val apiCall: Call<List<Film>> = RetrofitClient.apiRetrofit.getFilms(Token(token))
+            apiCall.enqueue(object : Callback<List<Film>> {
+                override fun onResponse(call: Call<List<Film>>, response: Response<List<Film>>) {
+                    Toast.makeText(context, response.body().toString(), Toast.LENGTH_SHORT).show()
+                }
 
-            override fun onFailure(call: Call<List<Film>>, t: Throwable) {
-               Log.d("Test",t.message.toString())
-            }
-        })
+                override fun onFailure(call: Call<List<Film>>, t: Throwable) {
+                    Log.d("Test", t.message.toString())
+                }
+            })
+        }
 
 
         val layoutManager = LinearLayoutManager(this)

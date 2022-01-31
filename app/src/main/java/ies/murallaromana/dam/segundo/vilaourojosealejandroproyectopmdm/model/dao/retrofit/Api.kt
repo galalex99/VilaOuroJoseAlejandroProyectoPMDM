@@ -6,16 +6,19 @@ import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.model.ent
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.POST
 
 interface Api {
     @GET("movies")
-    fun getFilms(): Call<List<Film>>
+    fun getFilms(@Header("Authorization")token: Token): Call<List<Film>>
 
     @POST("users/signup")
     fun signup(@Body user: User) : Call<Unit>
 
     @POST("users/login")
     fun login(@Body user : User): Call<Token>
+
+
 
 }

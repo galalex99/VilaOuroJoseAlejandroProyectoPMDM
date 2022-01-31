@@ -29,63 +29,68 @@ class LoginActivity : AppCompatActivity() {
         // Clear preferences
         super.onCreate(savedInstanceState)
         val LoginContext = this
-        // Create binding
-        binding = ActivityLoginBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
-        // use binding to get the buttosn and add an onclickListeners
-        binding.tvRegisterClick.setOnClickListener {
-            val intent = Intent(this, RegisterActivity::class.java)
-            startActivity(intent)
-        }
-        var loginCorrecto:Boolean = false
-        binding.btLogin.setOnClickListener {
-            // call a validation fun
-            //if (loginValidation()) {
+        // Get shared preferences check the token or save it
+        val preferences = Preferences(this)
+
+        if (preferences.retrieveData("token").isNullOrEmpty()) {
+            // Create binding
+            binding = ActivityLoginBinding.inflate(layoutInflater)
+            setContentView(binding.root)
+
+            // use binding to get the buttosn and add an onclickListeners
+            binding.tvRegisterClick.setOnClickListener {
+                val intent = Intent(this, RegisterActivity::class.java)
+                startActivity(intent)
+            }
+            var loginCorrecto: Boolean = false
+            binding.btLogin.setOnClickListener {
+                // call a validation fun
+                //if (loginValidation()) {
                 // Create a user var and login on api with
-                var user = User(binding.tietEmailLogin.text.toString(), binding.tietPasswdLogin.text.toString())
+                var user = User(binding.tietEmailLogin.text.toString(),
+                    binding.tietPasswdLogin.text.toString())
                 val loginCall = RetrofitClient.apiRetrofit.login(user)
                 loginCall.enqueue(object : Callback<Token> {
                     override fun onFailure(call: Call<Token>, t: Throwable) {
-                     Log.d("Login OnFailure",t.toString())
-                        loginCorrecto=false
+                        Log.d("Login OnFailure", t.toString())
+                        loginCorrecto = false
                     }
 
                     override fun onResponse(call: Call<Token>, response: Response<Token>) {
-                        Log.d("Login OnResponse ",response.toString())
+                        Log.d("Login OnResponse ", response.toString())
 
-                        if(response.code() in 200..299){
+                        if (response.code() in 200..299) {
                             val token = response.body()?.tokenstr
-                            Log.d("respuesta: token:", token.orEmpty())
-                                loginCorrecto=true
-                        }else{
-                            Toast.makeText(LoginContext,"Error na autenticacion, intenta mais tarde",Toast.LENGTH_SHORT).show()
-                            loginCorrecto=false
+                            if (token.isNullOrEmpty()) {
+                                Toast.makeText(LoginContext,
+                                    "Error gardando o token",
+                                    Toast.LENGTH_SHORT).show()
+                            } else {
+                                preferences.saveData(token)
+                            }
+                            Log.d("LoginC","Login correcto")
+                            loginCorrecto = true
+                        } else {
+                            Toast.makeText(LoginContext,
+                                "Error na autenticacion, intenta mais tarde",
+                                Toast.LENGTH_SHORT).show()
+                            loginCorrecto = false
                         }
 
                     }
-
-
                 })
                 // if data is correct start list activity
-                if(loginCorrecto){
-                val intent = Intent(this, FilmsListActivity::class.java)
-                startActivity(intent)}
-           /* } else {
-                // Show error with AlertDialog
-                AlertDialog.Builder(this)
-                    .setTitle(getString(R.string.incorrect_credentials_title))
-                    .setMessage(getString(R.string.incorrect_credentials_message))
-                    .setPositiveButton(
-                        string.ok
-                    ) // After clicking the accept button we clean the password
-                    { _, _ ->
-                        binding.tietEmailLogin.setText("")
-                        binding.tietPasswdLogin.setText("")
-                    }.show()
-
-
-            }*/
+                if (loginCorrecto) {
+                    val intent = Intent(this, FilmsListActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    startActivity(intent)
+                }
+            }
+        } else {
+            val intent = Intent(this, FilmsListActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
         }
     }
 

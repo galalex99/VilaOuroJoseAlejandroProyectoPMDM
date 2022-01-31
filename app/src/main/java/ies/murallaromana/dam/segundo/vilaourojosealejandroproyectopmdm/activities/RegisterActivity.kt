@@ -8,6 +8,7 @@ import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.R
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.RetrofitClient
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.databinding.ActivityRegisterBinding
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.model.entities.User
+import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.utils.Preferences
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.utils.ValidationUtils
 import retrofit2.Call
 import retrofit2.Callback
@@ -18,6 +19,8 @@ class RegisterActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
 
         // Crate binding find de data and know when the button is pressed
         binding = ActivityRegisterBinding.inflate(layoutInflater)
