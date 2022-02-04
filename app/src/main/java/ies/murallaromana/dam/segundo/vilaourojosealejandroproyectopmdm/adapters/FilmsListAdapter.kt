@@ -6,10 +6,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.activities.DetailActivity
+import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.activities.FilmsListActivity
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.databinding.ItemFilmBinding
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.model.entities.Film
 
-class FilmsListAdapter(private val films: List<Film>) :
+class FilmsListAdapter(private val films: List<Film>, context: FilmsListActivity) :
     RecyclerView.Adapter<FilmsListAdapter.FilmHolder>() {
     class FilmHolder(private val itemBinding: ItemFilmBinding) : RecyclerView.ViewHolder(itemBinding.root) {
 

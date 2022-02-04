@@ -132,7 +132,7 @@ class AddEditActivity : AppCompatActivity() {
                             if (film == null) {
                                 films.add(
                                     Film(
-                                        id.toLong(),
+                                        id,
                                         title,
                                         director,
                                         language,
@@ -147,7 +147,7 @@ class AddEditActivity : AppCompatActivity() {
                             } else {
                                 val index = films.indexOf(film)
                                 val editedFilm = Film(
-                                    id.toLong(),
+                                    id,
                                     title,
                                     director,
                                     language,

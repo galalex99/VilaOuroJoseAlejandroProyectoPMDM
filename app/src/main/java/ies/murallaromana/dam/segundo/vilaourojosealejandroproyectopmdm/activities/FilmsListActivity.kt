@@ -7,18 +7,15 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.App
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.R
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.RetrofitClient
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.adapters.FilmsListAdapter
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.databinding.ActivityListFilmsBinding
-import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.model.dao.FilmsDaoMockImpl
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.model.entities.Film
-import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.model.entities.Token
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.utils.Preferences
 import retrofit2.Call
 import retrofit2.Callback
@@ -29,54 +26,65 @@ class FilmsListActivity : AppCompatActivity() {
     private lateinit var binding: ActivityListFilmsBinding
     private lateinit var menuItemCall: MenuItem
 
-    // we create a lateinit var por the adapter
-    companion object {
-        @SuppressLint("StaticFieldLeak")
-        public lateinit var adapter: FilmsListAdapter
-    }
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // I use binding to link the .kt file with the graphic interface
+        //binding = ActivityListFilmsBinding.inflate(layoutInflater)
+        //setContentView(binding.root)
+
+        //Create the floating button to add films
+        //binding.floatButtonAddFilm.setOnClickListener() {
+            // When we click the button we open the
+        //    val intent = Intent(this, AddEditActivity::class.java)
+        //    startActivity(intent)
+        }
+
+
+    @SuppressLint("NotifyDataSetChanged")
+    override fun onResume() {
+        super.onResume()
+        // I use binding to link the .kt file with the graphic interface
         binding = ActivityListFilmsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // context of the film list activity
+
+        // Get the preferences to retrieve the token and get the token and the context to make petitions
+        val preferences = Preferences(this)
+        val token: String? = preferences.retrieveData("token")
         val context = this
 
-        val preferences = Preferences(this)
-        val token = preferences.retrieveData("token")
-        if (!token.isNullOrEmpty()) {
-            // Retrofilt retrieve data
-            val apiCall: Call<List<Film>> = RetrofitClient.apiRetrofit.getFilms(Token(token))
+            // Retrofit retrieve data
+            val apiCall: Call<List<Film>> = RetrofitClient.apiRetrofit.getFilms("Bearer $token")
             apiCall.enqueue(object : Callback<List<Film>> {
                 override fun onResponse(call: Call<List<Film>>, response: Response<List<Film>>) {
-                    Toast.makeText(context, response.body().toString(), Toast.LENGTH_SHORT).show()
+                    // If the petition has a correct code and the response has data we create put the data in  the adapter
+                    if (response.code() in 200..299 && response.body() != null) {
+                        val listofFilms = response.body()
+                        val adapter = listofFilms?. let { FilmsListAdapter(it,context) }
+                        binding.rvFilmsList.adapter = adapter
+                        val layoutManager = LinearLayoutManager(context)
+                        binding.rvFilmsList.layoutManager = layoutManager
+
+                        // Divider between each item
+                        val divider = DividerItemDecoration(binding.rvFilmsList.context, layoutManager.orientation)
+                        binding.rvFilmsList.addItemDecoration(divider)
+
+                        binding.floatButtonAddFilm.setOnClickListener() {
+                            // When we click the button we open the
+                            val intent = Intent(context, AddEditActivity::class.java)
+                            startActivity(intent)
+                        }
+                    }
                 }
 
                 override fun onFailure(call: Call<List<Film>>, t: Throwable) {
                     Log.d("Test", t.message.toString())
                 }
             })
-        }
-
-
-        val layoutManager = LinearLayoutManager(this)
-        val listaPeliculas = App.films
-        adapter = FilmsListAdapter(listaPeliculas)
-        adapter.notifyDataSetChanged()
-        binding.rvFilmsList.adapter = adapter
-        binding.rvFilmsList.layoutManager = layoutManager
-
-
-        // add films
-        binding.floatButtonAddFilm.setOnClickListener() {
-            // When we click the button we open the
-            val intent = Intent(this, AddEditActivity::class.java)
-            startActivity(intent)
-        }
     }
+
 
     // Initialize menu buttons
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -119,13 +127,4 @@ class FilmsListActivity : AppCompatActivity() {
             else -> super.onOptionsItemSelected(item)
         }
     }
-
-
-    @SuppressLint("NotifyDataSetChanged")
-    override fun onResume() {
-        super.onResume()
-        // we use this method when we delete a film to reload the list of films
-        adapter.notifyDataSetChanged()
-    }
-
 }

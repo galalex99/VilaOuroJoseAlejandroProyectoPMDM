@@ -11,7 +11,7 @@ import retrofit2.http.POST
 
 interface Api {
     @GET("movies")
-    fun getFilms(@Header("Authorization")token: Token): Call<List<Film>>
+    fun getFilms(@Header("Authorization")token: String): Call<List<Film>>
 
     @POST("users/signup")
     fun signup(@Body user: User) : Call<Unit>

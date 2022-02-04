@@ -1,11 +1,9 @@
 package ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.activities
 
-import android.R.string
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.R
@@ -28,25 +26,26 @@ class LoginActivity : AppCompatActivity() {
         title = getString(R.string.login_line)
         // Clear preferences
         super.onCreate(savedInstanceState)
-        val LoginContext = this
+        val loginContext = this
 
         // Get shared preferences check the token or save it
         val preferences = Preferences(this)
 
-        if (preferences.retrieveData("token").isNullOrEmpty()) {
+       // if (preferences.retrieveData("token").isNullOrEmpty()) {
             // Create binding
             binding = ActivityLoginBinding.inflate(layoutInflater)
             setContentView(binding.root)
 
-            // use binding to get the buttosn and add an onclickListeners
+            binding.tietEmailLogin.setText("alex5@gmail.com")
+        binding.tietPasswdLogin.setText("abc123..")
+            // use binding to get the button and add an onclickListeners
             binding.tvRegisterClick.setOnClickListener {
                 val intent = Intent(this, RegisterActivity::class.java)
                 startActivity(intent)
             }
-            var loginCorrecto: Boolean = false
+
+
             binding.btLogin.setOnClickListener {
-                // call a validation fun
-                //if (loginValidation()) {
                 // Create a user var and login on api with
                 var user = User(binding.tietEmailLogin.text.toString(),
                     binding.tietPasswdLogin.text.toString())
@@ -54,7 +53,6 @@ class LoginActivity : AppCompatActivity() {
                 loginCall.enqueue(object : Callback<Token> {
                     override fun onFailure(call: Call<Token>, t: Throwable) {
                         Log.d("Login OnFailure", t.toString())
-                        loginCorrecto = false
                     }
 
                     override fun onResponse(call: Call<Token>, response: Response<Token>) {
@@ -63,39 +61,32 @@ class LoginActivity : AppCompatActivity() {
                         if (response.code() in 200..299) {
                             val token = response.body()?.tokenstr
                             if (token.isNullOrEmpty()) {
-                                Toast.makeText(LoginContext,
+                                Toast.makeText(loginContext,
                                     "Error gardando o token",
                                     Toast.LENGTH_SHORT).show()
                             } else {
                                 preferences.saveData(token)
+                                Log.d("LoginC","Login correcto")
+
+                                val intent = Intent(loginContext, FilmsListActivity::class.java)
+                                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                startActivity(intent)
+
                             }
-                            Log.d("LoginC","Login correcto")
-                            loginCorrecto = true
                         } else {
-                            Toast.makeText(LoginContext,
+                            Toast.makeText(loginContext,
                                 "Error na autenticacion, intenta mais tarde",
                                 Toast.LENGTH_SHORT).show()
-                            loginCorrecto = false
                         }
 
                     }
                 })
-                // if data is correct start list activity
-                if (loginCorrecto) {
-                    val intent = Intent(this, FilmsListActivity::class.java)
-                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                    startActivity(intent)
-                }
             }
-        } else {
+                // if data is correct start list activity
+       /* } else {
             val intent = Intent(this, FilmsListActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
-        }
-    }
-
-    // Method called when it returns from the register to the login
-    override fun onResume() {
-        super.onResume()
+        }*/
     }
 }

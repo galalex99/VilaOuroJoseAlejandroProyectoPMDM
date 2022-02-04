@@ -6,7 +6,7 @@ class FilmsDaoMockImpl : FilmsDao {
 
     override fun getAll(): ArrayList<Film> {
         val lista: ArrayList<Film> = ArrayList()
-        lista.addAll(
+        /*lista.addAll(
             listOf(
                 Film(1,
                     "Venom: Habrá Matanza",
@@ -53,7 +53,7 @@ class FilmsDaoMockImpl : FilmsDao {
                     0,
                     "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/48mdKcYKIVfRtoSCqhkY8xMzJlA.jpg",
                     10)
-            ))
+            ))*/
         return lista
     }
 }
