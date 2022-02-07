@@ -31,7 +31,7 @@ class LoginActivity : AppCompatActivity() {
         // Get shared preferences check the token or save it
         val preferences = Preferences(this)
 
-       // if (preferences.retrieveData("token").isNullOrEmpty()) {
+        //if (preferences.retrieveData("token").isNullOrEmpty()) {
             // Create binding
             binding = ActivityLoginBinding.inflate(layoutInflater)
             setContentView(binding.root)
@@ -47,7 +47,7 @@ class LoginActivity : AppCompatActivity() {
 
             binding.btLogin.setOnClickListener {
                 // Create a user var and login on api with
-                var user = User(binding.tietEmailLogin.text.toString(),
+                val user = User(binding.tietEmailLogin.text.toString(),
                     binding.tietPasswdLogin.text.toString())
                 val loginCall = RetrofitClient.apiRetrofit.login(user)
                 loginCall.enqueue(object : Callback<Token> {
@@ -83,10 +83,10 @@ class LoginActivity : AppCompatActivity() {
                 })
             }
                 // if data is correct start list activity
-       /* } else {
-            val intent = Intent(this, FilmsListActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            startActivity(intent)
-        }*/
+       // } else {
+     //       val intent = Intent(this, FilmsListActivity::class.java)
+     //       intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+     //       startActivity(intent)
+    //    }
     }
 }

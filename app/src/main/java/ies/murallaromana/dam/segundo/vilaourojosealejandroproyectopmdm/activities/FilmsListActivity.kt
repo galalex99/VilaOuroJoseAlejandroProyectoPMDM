@@ -27,9 +27,9 @@ class FilmsListActivity : AppCompatActivity() {
     private lateinit var menuItemCall: MenuItem
 
 
-    @SuppressLint("NotifyDataSetChanged")
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    //@SuppressLint("NotifyDataSetChanged")
+    //override fun onCreate(savedInstanceState: Bundle?) {
+      //  super.onCreate(savedInstanceState)
         // I use binding to link the .kt file with the graphic interface
         //binding = ActivityListFilmsBinding.inflate(layoutInflater)
         //setContentView(binding.root)
@@ -39,7 +39,7 @@ class FilmsListActivity : AppCompatActivity() {
             // When we click the button we open the
         //    val intent = Intent(this, AddEditActivity::class.java)
         //    startActivity(intent)
-        }
+        //}
 
 
     @SuppressLint("NotifyDataSetChanged")
@@ -61,8 +61,8 @@ class FilmsListActivity : AppCompatActivity() {
                 override fun onResponse(call: Call<List<Film>>, response: Response<List<Film>>) {
                     // If the petition has a correct code and the response has data we create put the data in  the adapter
                     if (response.code() in 200..299 && response.body() != null) {
-                        val listofFilms = response.body()
-                        val adapter = listofFilms?. let { FilmsListAdapter(it,context) }
+                        val listFilms = response.body()
+                        val adapter = listFilms?. let { FilmsListAdapter(it,context) }
                         binding.rvFilmsList.adapter = adapter
                         val layoutManager = LinearLayoutManager(context)
                         binding.rvFilmsList.layoutManager = layoutManager
@@ -71,7 +71,7 @@ class FilmsListActivity : AppCompatActivity() {
                         val divider = DividerItemDecoration(binding.rvFilmsList.context, layoutManager.orientation)
                         binding.rvFilmsList.addItemDecoration(divider)
 
-                        binding.floatButtonAddFilm.setOnClickListener() {
+                        binding.floatButtonAddFilm.setOnClickListener {
                             // When we click the button we open the
                             val intent = Intent(context, AddEditActivity::class.java)
                             startActivity(intent)
@@ -115,7 +115,7 @@ class FilmsListActivity : AppCompatActivity() {
                     .setMessage(getString(R.string.call_support_message))
                     .setPositiveButton(
                         android.R.string.ok
-                    ) // After clicking we call suport
+                    ) // After clicking we call support
                     { _, _ ->
                         val dial = "tel:634926707"
                         startActivity(Intent(Intent.ACTION_DIAL, Uri.parse(dial)))

@@ -4,10 +4,7 @@ import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.model.ent
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.model.entities.Token
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.model.entities.User
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface Api {
     @GET("movies")
@@ -19,6 +16,13 @@ interface Api {
     @POST("users/login")
     fun login(@Body user : User): Call<Token>
 
+    @POST("movies/{id}")
+    fun delete(@Header("Authorization")token: String,
+                @Path("id") id:String ): Call<Film>
+
+    @GET("movies/{id}")
+    fun getByID(@Header("Authorization")token: String,
+                @Path("id") id:String ): Call<Film>
 
 
 }

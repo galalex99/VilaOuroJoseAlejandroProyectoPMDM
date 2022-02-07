@@ -21,7 +21,8 @@ class FilmsListAdapter(private val films: List<Film>, context: FilmsListActivity
 
             itemBinding.idItemFilm.setOnClickListener {
                 val intent = Intent(itemBinding.root.context,DetailActivity::class.java)
-                intent.putExtra("film",film)
+                //intent.putExtra("film",film)
+                intent.putExtra("id",film.id)
                 itemBinding.root.context.startActivity(intent)
             }
         }

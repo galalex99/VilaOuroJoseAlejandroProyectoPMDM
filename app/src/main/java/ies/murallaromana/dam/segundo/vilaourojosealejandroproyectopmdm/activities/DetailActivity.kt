@@ -3,6 +3,7 @@ package ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.activiti
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -11,9 +12,15 @@ import androidx.appcompat.app.AlertDialog
 import com.squareup.picasso.Picasso
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.App.Companion.films
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.R
+import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.RetrofitClient
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.adapters.FilmsListAdapter
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.databinding.ActivityDetailBinding
+import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.model.dao.retrofit.Api
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.model.entities.Film
+import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.utils.Preferences
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class DetailActivity : AppCompatActivity() {
@@ -29,7 +36,6 @@ class DetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        infoFilm = intent.extras?.get("film") as Film
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -37,14 +43,29 @@ class DetailActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        infoFilm = intent.extras?.get("film") as Film
-        title = infoFilm.title
-        Picasso.get().load(infoFilm.url).into(binding.ivFilmImage)
-        binding.tvDetailFilmDirector.text = infoFilm.director
-        binding.tvDetailFilmAge.text = infoFilm.ageRating.toString()
-        binding.tvDetailFilmLanguage.text = infoFilm.language
-        binding.tvDetailFilmMoviePremiere.text = infoFilm.moviePremiere
-        binding.ratingBarDetail.rating = (infoFilm.score / 2).toFloat()
+        val id = intent.extras?.get("id") as String
+        val token = Preferences(this).retrieveData("token")
+            val apiCall: Call<Film> = RetrofitClient.apiRetrofit.getByID("Bearer $token",id)
+            apiCall.enqueue(object : Callback<Film> {
+                override fun onResponse(call: Call<Film>, response: Response<Film>) {
+                    if (response.code() in 200..299 && response.body() != null) {
+                        infoFilm  = response.body() as Film
+                        title = infoFilm.title
+                        Picasso.get().load(infoFilm.url).into(binding.ivFilmImage)
+                        binding.tvDetailFilmDirector.text = infoFilm.director
+                        binding.tvDetailFilmAge.text = infoFilm.ageRating.toString()
+                        binding.tvDetailFilmLanguage.text = infoFilm.language
+                        binding.tvDetailFilmMoviePremiere.text = infoFilm.moviePremiere
+                        binding.ratingBarDetail.rating = (infoFilm.score / 2).toFloat()
+                    }
+                }
+
+                override fun onFailure(call: Call<Film>, t: Throwable) {
+                    Log.d("Fail getting film", t.message.toString())
+                }
+            })
+
+
     }
 
     // Initialize menu buttons
@@ -60,7 +81,7 @@ class DetailActivity : AppCompatActivity() {
 
 
     override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
-        if (intent.extras?.get("film") != null) {
+        if (intent.extras?.get("id") as String != null) {
             menuItemEdit.isVisible = true
             menuItemDelete.isVisible = true
             menuItemSave.isVisible = false

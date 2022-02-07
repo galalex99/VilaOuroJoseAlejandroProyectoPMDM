@@ -22,11 +22,10 @@ class AddEditActivity : AppCompatActivity() {
         binding = ActivityAddEditBinding.inflate(layoutInflater)
         setContentView(binding.root)
         if (intent.extras?.get("film") == null) {
-            title = getString(R.string.film_edit_title)
+            title = getString(R.string.film_add_edit_line)
         } else {
-            film = (intent.extras?.get("film") as Film?)!!
-            title = getString(R.string.film_edit_title) + film!!.title
-            binding.tietEditAddId.setText(film?.id.toString())
+            film = (intent.extras?.get("film") as Film?)
+            title = getString(R.string.film_edit_title) + film?.title
             binding.tietEditAddTitle.setText(film?.title)
             binding.tietEditAddDirector.setText(film?.director)
             binding.tietEditAddLanguage.setText(film?.language)
@@ -69,7 +68,7 @@ class AddEditActivity : AppCompatActivity() {
                     )
                     { _, _ ->
                         var correctData = true
-                        val id = binding.tietEditAddId.text?.trim().toString()
+                        val id = film?.id
                         val title = binding.tietEditAddTitle.text?.trim().toString()
                         val director = binding.tietEditAddDirector.text?.trim().toString()
                         val language = binding.tietEditAddLanguage.text?.trim().toString()
@@ -79,10 +78,6 @@ class AddEditActivity : AppCompatActivity() {
                         val url = binding.tietEditAddUrl.text?.trim().toString()
 
 
-                        if (TextUtils.isEmpty(id)) {
-                            correctData = false
-                            binding.tietEditAddId.error = getString(R.string.generic_data_error)
-                        }
                         if (TextUtils.isEmpty(title)) {
                             correctData = false
                             binding.tietEditAddTitle.error = getString(R.string.generic_data_error)
