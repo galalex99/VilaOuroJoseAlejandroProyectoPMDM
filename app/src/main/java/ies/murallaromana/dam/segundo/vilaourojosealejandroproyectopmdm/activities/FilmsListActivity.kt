@@ -3,7 +3,6 @@ package ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.activiti
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
-import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
@@ -80,7 +79,7 @@ class FilmsListActivity : AppCompatActivity() {
                 }
 
                 override fun onFailure(call: Call<List<Film>>, t: Throwable) {
-                    Log.d("Test", t.message.toString())
+                    Log.d("Error Getting list", t.message.toString())
                 }
             })
     }

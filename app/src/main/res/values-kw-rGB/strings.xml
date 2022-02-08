@@ -37,7 +37,7 @@
     <string name="film_save_title">Save Film</string>
     <string name="film_save_message">Do you want to save the film ?</string>
     <string name="generic_data_error">" Data not entered"</string>
-    <string name="score_data_error">You cannot enter scores greater than 10</string>
+    <string name="score_data_error">You cannot enter scores greater than 10 and lower than 0</string>
     <string name="generic_data_check">" Check the data entered"</string>
     <string name="film_save_confirmation">Film Saved</string>
     <string name="hint_id">Id</string>

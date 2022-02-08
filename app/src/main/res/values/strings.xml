@@ -34,7 +34,7 @@
     <string name="age_label">Edad Recomendada</string>
     <string name="film_save_message">Quieres guardar la pelicula ?</string>
     <string name="generic_data_error">Dato no introducido</string>
-    <string name="score_data_error">No puedes introducir notas mayores a 10</string>
+    <string name="score_data_error">No puedes introducir notas mayores a 10 y menores a 0</string>
     <string name="generic_data_check">Comprueba los datos introducidos</string>
     <string name="film_save_confirmation">Pelicula Guardada</string>
     <string name="hint_id">Id</string>

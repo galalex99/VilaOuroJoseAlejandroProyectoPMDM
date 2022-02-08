@@ -12,7 +12,7 @@ data class Film (
         @SerializedName("rating") var score: Double,
         var ageRating: Short,
         @SerializedName("imageUrl")var url: String,
-        var duration:Int
+        @SerializedName("runtimeMinutes")var duration:Int
 ) : Serializable
 
 

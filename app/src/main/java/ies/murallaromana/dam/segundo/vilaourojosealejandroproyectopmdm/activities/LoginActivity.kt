@@ -31,62 +31,66 @@ class LoginActivity : AppCompatActivity() {
         // Get shared preferences check the token or save it
         val preferences = Preferences(this)
 
-        //if (preferences.retrieveData("token").isNullOrEmpty()) {
-            // Create binding
-            binding = ActivityLoginBinding.inflate(layoutInflater)
-            setContentView(binding.root)
+        if (!preferences.retrieveData("token").isNullOrEmpty()) {
+            val intent = Intent(this, FilmsListActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
 
-            binding.tietEmailLogin.setText("alex5@gmail.com")
+        }
+        // Create binding
+        binding = ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        binding.tietEmailLogin.setText("alex5@gmail.com")
         binding.tietPasswdLogin.setText("abc123..")
-            // use binding to get the button and add an onclickListeners
-            binding.tvRegisterClick.setOnClickListener {
-                val intent = Intent(this, RegisterActivity::class.java)
-                startActivity(intent)
-            }
+        // use binding to get the button and add an onclickListeners
+        binding.tvRegisterClick.setOnClickListener {
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
+        }
 
 
-            binding.btLogin.setOnClickListener {
-                // Create a user var and login on api with
-                val user = User(binding.tietEmailLogin.text.toString(),
-                    binding.tietPasswdLogin.text.toString())
-                val loginCall = RetrofitClient.apiRetrofit.login(user)
-                loginCall.enqueue(object : Callback<Token> {
-                    override fun onFailure(call: Call<Token>, t: Throwable) {
-                        Log.d("Login OnFailure", t.toString())
-                    }
+        binding.btLogin.setOnClickListener {
+            // Create a user var and login on api with
+            val user = User(binding.tietEmailLogin.text.toString(),
+                binding.tietPasswdLogin.text.toString())
+            val loginCall = RetrofitClient.apiRetrofit.login(user)
+            loginCall.enqueue(object : Callback<Token> {
+                override fun onFailure(call: Call<Token>, t: Throwable) {
+                    Log.d("Login OnFailure", t.toString())
+                }
 
-                    override fun onResponse(call: Call<Token>, response: Response<Token>) {
-                        Log.d("Login OnResponse ", response.toString())
+                override fun onResponse(call: Call<Token>, response: Response<Token>) {
+                    Log.d("Login OnResponse ", response.toString())
 
-                        if (response.code() in 200..299) {
-                            val token = response.body()?.tokenstr
-                            if (token.isNullOrEmpty()) {
-                                Toast.makeText(loginContext,
-                                    "Error gardando o token",
-                                    Toast.LENGTH_SHORT).show()
-                            } else {
-                                preferences.saveData(token)
-                                Log.d("LoginC","Login correcto")
-
-                                val intent = Intent(loginContext, FilmsListActivity::class.java)
-                                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                                startActivity(intent)
-
-                            }
-                        } else {
+                    if (response.code() in 200..299) {
+                        val token = response.body()?.tokenstr
+                        if (token.isNullOrEmpty()) {
                             Toast.makeText(loginContext,
-                                "Error na autenticacion, intenta mais tarde",
+                                "Error gardando o token",
                                 Toast.LENGTH_SHORT).show()
-                        }
+                        } else {
+                            preferences.saveData(token)
+                            Log.d("LoginC", "Login correcto")
 
+                            val intent = Intent(loginContext, FilmsListActivity::class.java)
+                            intent.flags =
+                                Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                            startActivity(intent)
+
+                        }
+                    } else {
+                        Toast.makeText(loginContext,
+                            "Error na autenticacion, intenta mais tarde",
+                            Toast.LENGTH_SHORT).show()
                     }
-                })
-            }
-                // if data is correct start list activity
-       // } else {
-     //       val intent = Intent(this, FilmsListActivity::class.java)
-     //       intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-     //       startActivity(intent)
-    //    }
+
+                }
+            })
+        }
+        // if data is correct start list activity
+        // } else {
+        //
+        //    }
     }
 }

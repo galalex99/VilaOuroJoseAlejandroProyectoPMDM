@@ -7,22 +7,33 @@ import retrofit2.Call
 import retrofit2.http.*
 
 interface Api {
-    @GET("movies")
-    fun getFilms(@Header("Authorization")token: String): Call<List<Film>>
+
 
     @POST("users/signup")
-    fun signup(@Body user: User) : Call<Unit>
+    fun signup(@Body user: User): Call<Unit>
 
     @POST("users/login")
-    fun login(@Body user : User): Call<Token>
+    fun login(@Body user: User): Call<Token>
+
+    @POST("movies")
+    fun createFilm(@Header("Authorization") token: String,
+                    @Body film:Film): Call<Unit>
 
     @POST("movies/{id}")
-    fun delete(@Header("Authorization")token: String,
-                @Path("id") id:String ): Call<Film>
+    fun delete(
+        @Header("Authorization") token: String,
+        @Path("id") id: String,
+    ): Call<Film>
+
+
+    @GET("movies")
+    fun getFilms(@Header("Authorization") token: String): Call<List<Film>>
 
     @GET("movies/{id}")
-    fun getByID(@Header("Authorization")token: String,
-                @Path("id") id:String ): Call<Film>
+    fun getByID(
+        @Header("Authorization") token: String,
+        @Path("id") id: String,
+    ): Call<Film>
 
 
 }

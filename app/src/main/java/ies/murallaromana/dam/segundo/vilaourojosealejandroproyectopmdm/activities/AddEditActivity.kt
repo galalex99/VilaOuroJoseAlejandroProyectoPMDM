@@ -1,8 +1,10 @@
 package ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.activities
 
+import android.app.Application
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -10,17 +12,27 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.App.Companion.films
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.R
+import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.RetrofitClient
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.databinding.ActivityAddEditBinding
+import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.model.dao.retrofit.Api
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.model.entities.Film
+import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.utils.Preferences
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 private lateinit var binding: ActivityAddEditBinding
 var film: Film? = null
+private lateinit var preferences: Preferences
+private lateinit var token: String
 
 class AddEditActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAddEditBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        preferences = Preferences(this)
+        token = preferences.retrieveData("token").toString()
         if (intent.extras?.get("film") == null) {
             title = getString(R.string.film_add_edit_line)
         } else {
@@ -76,7 +88,7 @@ class AddEditActivity : AppCompatActivity() {
                         val score = binding.tietEditAddScore.text?.trim().toString()
                         val age = binding.tietEditAddAgeRating.text?.trim().toString()
                         val url = binding.tietEditAddUrl.text?.trim().toString()
-
+                        val duration = binding.tietEditAddFilmDuration.text?.trim().toString()
 
                         if (TextUtils.isEmpty(title)) {
                             correctData = false
@@ -101,7 +113,7 @@ class AddEditActivity : AppCompatActivity() {
                         if (TextUtils.isEmpty(score)) {
                             correctData = false
                             binding.tietEditAddScore.error = getString(R.string.generic_data_error)
-                        } else if ((score).toDouble() > 10) {
+                        } else if ((score).toDouble() > 10 || score.toDouble() < 0) {
                             correctData = false
                             binding.tietEditAddScore.error =
                                 getString(R.string.score_data_error)
@@ -116,6 +128,11 @@ class AddEditActivity : AppCompatActivity() {
                             correctData = false
                             binding.tietEditAddUrl.error = getString(R.string.generic_data_error)
                         }
+                        if (TextUtils.isEmpty(duration) && duration.toInt() < 0) {
+                            correctData = false
+                            binding.tietEditAddFilmDuration.error =
+                                getString(R.string.generic_data_error)
+                        }
 
                         if (!correctData) {
                             Toast.makeText(
@@ -125,20 +142,47 @@ class AddEditActivity : AppCompatActivity() {
                             ).show()
                         } else {
                             if (film == null) {
-                                films.add(
-                                    Film(
-                                        id,
-                                        title,
-                                        director,
-                                        language,
-                                        premiere,
-                                        score.toDouble(),
-                                        age.toShort(),
-                                        url,
-                                        10
+                                // Method post for creating a film
+                                var newFilm = Film(
+                                    id,
+                                    title,
+                                    director,
+                                    language,
+                                    premiere,
+                                    score.toDouble(),
+                                    age.toShort(),
+                                    url,
+                                    duration.toInt()
 
-                                    )
                                 )
+                                val apiCall: Call<Unit> =
+                                    RetrofitClient.apiRetrofit.createFilm("Bearer $token",
+                                        newFilm!!)
+                                apiCall.enqueue(object : Callback<Unit> {
+                                    override fun onResponse(
+                                        call: Call<Unit>,
+                                        response: Response<Unit>,
+                                    ) {
+                                        if (response.code() in 200..299) {
+                                            Toast.makeText(applicationContext,
+                                                "Creación da pelicula correcta",
+                                                Toast.LENGTH_SHORT).show()
+                                        } else {
+                                            Toast.makeText(applicationContext,
+                                                "Creación da pelicula incorrecta",
+                                                Toast.LENGTH_SHORT).show()
+                                        }
+                                        // We use the intent with flags so that we return to the list without being able to return to the detail activity
+                                        val intent =
+                                            Intent(applicationContext, FilmsListActivity::class.java)
+                                        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                                        startActivity(intent)
+                                    }
+
+                                    override fun onFailure(call: Call<Unit>, t: Throwable) {
+                                        Log.d("Error  film", t.message.toString())
+                                    }
+                                })
                             } else {
                                 val index = films.indexOf(film)
                                 val editedFilm = Film(
@@ -160,11 +204,6 @@ class AddEditActivity : AppCompatActivity() {
                                 getString(R.string.film_save_confirmation),
                                 Toast.LENGTH_SHORT
                             ).show()
-                            // We use the intent with flags so that we return to the list without being able to return to the detail activity
-                            val intent =
-                                Intent(this, FilmsListActivity::class.java)
-                            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-                            startActivity(intent)
                         }
                     }.setNegativeButton(getString(R.string.cancel_button), null).create()
                     .show()
