@@ -1,21 +1,17 @@
 package ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
-import android.view.MenuInflater
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import com.squareup.picasso.Picasso
-import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.App.Companion.films
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.R
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.RetrofitClient
-import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.adapters.FilmsListAdapter
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.databinding.ActivityDetailBinding
-import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.model.dao.retrofit.Api
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.model.entities.Film
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.utils.Preferences
 import retrofit2.Call
@@ -81,11 +77,9 @@ class DetailActivity : AppCompatActivity() {
 
 
     override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
-        if (intent.extras?.get("id") as String != null) {
-            menuItemEdit.isVisible = true
-            menuItemDelete.isVisible = true
-            menuItemSave.isVisible = false
-        }
+        menuItemEdit.isVisible = true
+        menuItemDelete.isVisible = true
+        menuItemSave.isVisible = false
         return super.onPrepareOptionsMenu(menu)
     }
 
@@ -103,12 +97,8 @@ class DetailActivity : AppCompatActivity() {
                         android.R.string.ok
                     ) // After clicking the accept button we remove the film
                     { _, _ ->
-                        films.remove(infoFilm)
-                        Toast.makeText(
-                            this,
-                            getString(R.string.film_delete_confirmation),
-                            Toast.LENGTH_SHORT
-                        ).show()
+
+
                         finish()
                     }.setNegativeButton(getString(R.string.cancel_button), null).create()
                     .show()
