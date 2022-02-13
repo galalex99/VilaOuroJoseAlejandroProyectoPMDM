@@ -128,12 +128,17 @@ class AddEditActivity : AppCompatActivity() {
                             correctData = false
                             binding.tietEditAddUrl.error = getString(R.string.generic_data_error)
                         }
-                        if (TextUtils.isEmpty(duration) && duration.toInt() < 0) {
+                        if (TextUtils.isEmpty(duration)) {
                             correctData = false
                             binding.tietEditAddFilmDuration.error =
                                 getString(R.string.generic_data_error)
+                        } else {
+                            if (duration.toInt() < 0) {
+                                correctData = false
+                                binding.tietEditAddFilmDuration.error =
+                                    "Duración introducida menor a 0"
+                            }
                         }
-
                         if (!correctData) {
                             Toast.makeText(
                                 this,
@@ -156,25 +161,34 @@ class AddEditActivity : AppCompatActivity() {
 
                                 )
                                 val apiCall: Call<Unit> =
-                                    RetrofitClient.apiRetrofit.createFilm("Bearer $token",
-                                        newFilm!!)
+                                    RetrofitClient.apiRetrofit.createFilm(
+                                        "Bearer $token",
+                                        newFilm!!
+                                    )
                                 apiCall.enqueue(object : Callback<Unit> {
                                     override fun onResponse(
                                         call: Call<Unit>,
                                         response: Response<Unit>,
                                     ) {
                                         if (response.code() in 200..299) {
-                                            Toast.makeText(applicationContext,
+                                            Toast.makeText(
+                                                applicationContext,
                                                 "Creación da pelicula correcta",
-                                                Toast.LENGTH_SHORT).show()
+                                                Toast.LENGTH_SHORT
+                                            ).show()
                                         } else {
-                                            Toast.makeText(applicationContext,
+                                            Toast.makeText(
+                                                applicationContext,
                                                 "Creación da pelicula incorrecta",
-                                                Toast.LENGTH_SHORT).show()
+                                                Toast.LENGTH_SHORT
+                                            ).show()
                                         }
                                         // We use the intent with flags so that we return to the list without being able to return to the detail activity
                                         val intent =
-                                            Intent(applicationContext, FilmsListActivity::class.java)
+                                            Intent(
+                                                applicationContext,
+                                                FilmsListActivity::class.java
+                                            )
                                         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                                         startActivity(intent)
                                     }
@@ -184,9 +198,8 @@ class AddEditActivity : AppCompatActivity() {
                                     }
                                 })
                             } else {
-                                val index = films.indexOf(film)
                                 val editedFilm = Film(
-                                    id,
+                                    film!!.id,
                                     title,
                                     director,
                                     language,
@@ -196,7 +209,43 @@ class AddEditActivity : AppCompatActivity() {
                                     url,
                                     10
                                 )
-                                films[index] = editedFilm
+                                val apiCall: Call<Film> =
+                                    RetrofitClient.apiRetrofit.editFilm(
+                                        "Bearer $token",
+                                        editedFilm
+                                    )
+                                apiCall.enqueue(object : Callback<Film> {
+                                    override fun onResponse(
+                                        call: Call<Film>,
+                                        response: Response<Film>,
+                                    ) {
+                                        if (response.code() in 200..299) {
+                                            Toast.makeText(
+                                                applicationContext,
+                                                "Edición da pelicula correcta",
+                                                Toast.LENGTH_SHORT
+                                            ).show()
+                                        } else {
+                                            Toast.makeText(
+                                                applicationContext,
+                                                "Ediciónn da pelicula incorrecta",
+                                                Toast.LENGTH_SHORT
+                                            ).show()
+                                        }
+                                        // We use the intent with flags so that we return to the list without being able to return to the detail activity
+                                        val intent =
+                                            Intent(
+                                                applicationContext,
+                                                FilmsListActivity::class.java
+                                            )
+                                        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                                        startActivity(intent)
+                                    }
+
+                                    override fun onFailure(call: Call<Film>, t: Throwable) {
+                                        Log.d("Error  film", t.message.toString())
+                                    }
+                                })
 
                             }
                             Toast.makeText(

@@ -141,6 +141,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/tietEditAddFilmDuration"
                 android:layout_width="match_parent"
+                android:inputType="number"
                 android:layout_height="wrap_content"
                 android:hint="@string/Film_duration" />
 
