@@ -30,7 +30,6 @@ class LoginActivity : AppCompatActivity() {
 
         // Get shared preferences check the token or save it
         val preferences = Preferences(this)
-
         if (!preferences.retrieveData("token").isNullOrEmpty()) {
             val intent = Intent(this, FilmsListActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -40,6 +39,7 @@ class LoginActivity : AppCompatActivity() {
         // Create binding
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
 
         binding.tietEmailLogin.setText("alex5@gmail.com")
         binding.tietPasswdLogin.setText("abc123..")

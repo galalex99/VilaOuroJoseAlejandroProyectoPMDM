@@ -6,6 +6,7 @@ import android.net.Uri
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -16,6 +17,7 @@ import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.adapters.
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.databinding.ActivityListFilmsBinding
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.model.entities.Film
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.utils.Preferences
+import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.utils.ValidationUtils
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -24,21 +26,6 @@ class FilmsListActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityListFilmsBinding
     private lateinit var menuItemCall: MenuItem
-
-
-    //@SuppressLint("NotifyDataSetChanged")
-    //override fun onCreate(savedInstanceState: Bundle?) {
-      //  super.onCreate(savedInstanceState)
-        // I use binding to link the .kt file with the graphic interface
-        //binding = ActivityListFilmsBinding.inflate(layoutInflater)
-        //setContentView(binding.root)
-
-        //Create the floating button to add films
-        //binding.floatButtonAddFilm.setOnClickListener() {
-            // When we click the button we open the
-        //    val intent = Intent(this, AddEditActivity::class.java)
-        //    startActivity(intent)
-        //}
 
 
     @SuppressLint("NotifyDataSetChanged")
@@ -54,34 +41,39 @@ class FilmsListActivity : AppCompatActivity() {
         val token: String? = preferences.retrieveData("token")
         val context = this
 
-            // Retrofit retrieve data
-            val apiCall: Call<List<Film>> = RetrofitClient.apiRetrofit.getFilms("Bearer $token")
-            apiCall.enqueue(object : Callback<List<Film>> {
-                override fun onResponse(call: Call<List<Film>>, response: Response<List<Film>>) {
-                    // If the petition has a correct code and the response has data we create put the data in  the adapter
-                    if (response.code() in 200..299 && response.body() != null) {
-                        val listFilms = response.body()
-                        val adapter = listFilms?. let { FilmsListAdapter(it,context) }
-                        binding.rvFilmsList.adapter = adapter
-                        val layoutManager = LinearLayoutManager(context)
-                        binding.rvFilmsList.layoutManager = layoutManager
+        // Retrofit retrieve data
+        val apiCall: Call<List<Film>> = RetrofitClient.apiRetrofit.getFilms("Bearer $token")
+        apiCall.enqueue(object : Callback<List<Film>> {
+            override fun onResponse(call: Call<List<Film>>, response: Response<List<Film>>) {
+                // If the petition has a correct code and the response has data we create put the data in  the adapter
+                if (response.code() in 200..299 && response.body() != null) {
+                    val listFilms = response.body()
+                    val adapter = listFilms?.let { FilmsListAdapter(it, context) }
+                    binding.rvFilmsList.adapter = adapter
+                    val layoutManager = LinearLayoutManager(context)
+                    binding.rvFilmsList.layoutManager = layoutManager
 
-                        // Divider between each item
-                        val divider = DividerItemDecoration(binding.rvFilmsList.context, layoutManager.orientation)
-                        binding.rvFilmsList.addItemDecoration(divider)
+                    // Divider between each item
+                    val divider = DividerItemDecoration(binding.rvFilmsList.context,
+                        layoutManager.orientation)
+                    binding.rvFilmsList.addItemDecoration(divider)
 
-                        binding.floatButtonAddFilm.setOnClickListener {
-                            // When we click the button we open the
-                            val intent = Intent(context, AddEditActivity::class.java)
-                            startActivity(intent)
-                        }
+                    binding.floatButtonAddFilm.setOnClickListener {
+                        // When we click the button we open the
+                        val intent = Intent(context, AddEditActivity::class.java)
+                        startActivity(intent)
                     }
+                } else if (response.code() == 401 || response.code() == 500) {
+                    ValidationUtils.closeSession(context)
+                } else {
+                    Toast.makeText(context,"No ha sido posible recuperar la lista de películas",Toast.LENGTH_SHORT).show()
                 }
+            }
 
-                override fun onFailure(call: Call<List<Film>>, t: Throwable) {
-                    Log.d("Error Getting list", t.message.toString())
-                }
-            })
+            override fun onFailure(call: Call<List<Film>>, t: Throwable) {
+                Log.d("Error Getting list", t.message.toString())
+            }
+        })
     }
 
 

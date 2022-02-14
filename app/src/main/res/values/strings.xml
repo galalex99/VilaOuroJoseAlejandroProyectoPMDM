@@ -30,7 +30,7 @@
     <string name="film_edit_confirmation">Editando Pelicula</string>
     <string name="director_label">Director</string>
     <string name="language_label">Idioma</string>
-    <string name="premiere_label">Fecha de lanzamiento</string>
+    <string name="premiere_label">Año de lanzamiento</string>
     <string name="age_label">Edad Recomendada</string>
     <string name="film_save_message">Quieres guardar la pelicula ?</string>
     <string name="generic_data_error">Dato no introducido</string>

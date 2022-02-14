@@ -23,7 +23,7 @@ interface Api {
     fun delete(
         @Header("Authorization") token: String,
         @Path("id") id: String,
-    ): Call<Film>
+    ): Call<Unit>
 
     @PUT("movies")
     fun editFilm(@Header("Authorization") token:String,

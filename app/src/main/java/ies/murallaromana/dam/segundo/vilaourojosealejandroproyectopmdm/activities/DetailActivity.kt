@@ -13,7 +13,9 @@ import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.R
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.RetrofitClient
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.databinding.ActivityDetailBinding
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.model.entities.Film
+import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.model.entities.Token
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.utils.Preferences
+import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.utils.ValidationUtils
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -26,6 +28,7 @@ class DetailActivity : AppCompatActivity() {
         lateinit var menuItemDelete: MenuItem
         lateinit var menuItemEdit: MenuItem
         lateinit var infoFilm: Film
+        lateinit var token: String
 
     }
 
@@ -40,26 +43,35 @@ class DetailActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         val id = intent.extras?.get("id") as String
-        val token = Preferences(this).retrieveData("token")
-            val apiCall: Call<Film> = RetrofitClient.apiRetrofit.getByID("Bearer $token",id)
-            apiCall.enqueue(object : Callback<Film> {
-                override fun onResponse(call: Call<Film>, response: Response<Film>) {
-                    if (response.code() in 200..299 && response.body() != null) {
-                        infoFilm  = response.body() as Film
-                        title = infoFilm.title
-                        Picasso.get().load(infoFilm.url).into(binding.ivFilmImage)
-                        binding.tvDetailFilmDirector.text = infoFilm.director
-                        binding.tvDetailFilmAge.text = infoFilm.ageRating.toString()
-                        binding.tvDetailFilmLanguage.text = infoFilm.language
-                        binding.tvDetailFilmMoviePremiere.text = infoFilm.moviePremiere
-                        binding.ratingBarDetail.rating = (infoFilm.score / 2).toFloat()
-                    }
-                }
+        token = Preferences(this).retrieveData("token").toString()
+        val context = this
+        val apiCall: Call<Film> = RetrofitClient.apiRetrofit.getByID("Bearer $token", id)
+        apiCall.enqueue(object : Callback<Film> {
+            override fun onResponse(call: Call<Film>, response: Response<Film>) {
+                if (response.code() in 200..299 && response.body() != null) {
+                    infoFilm = response.body() as Film
+                    title = infoFilm.title
+                    Picasso.get().load(infoFilm.url).into(binding.ivFilmImage)
+                    binding.tvDetailFilmDirector.text = infoFilm.director
+                    binding.tvDetailFilmAge.text = infoFilm.ageRating.toString()
+                    binding.tvDetailFilmLanguage.text = infoFilm.language
+                    binding.tvDetailFilmMoviePremiere.text = infoFilm.moviePremiere.toString()
+                    binding.tvDetailFilmDuration.text = infoFilm.duration.toString()
+                    binding.ratingBarDetail.rating = (infoFilm.score / 2).toFloat()
 
-                override fun onFailure(call: Call<Film>, t: Throwable) {
-                    Log.d("Fail getting film", t.message.toString())
+                } else if (response.code() == 401 || response.code() == 500) {
+                    ValidationUtils.closeSession(context)
+                } else {
+                    Toast.makeText(context,
+                        "No ha sido posible recuperar los detalles de la pelicula",
+                        Toast.LENGTH_SHORT).show()
                 }
-            })
+            }
+
+            override fun onFailure(call: Call<Film>, t: Throwable) {
+                Log.d("Fail getting film", t.message.toString())
+            }
+        })
 
 
     }
@@ -97,9 +109,39 @@ class DetailActivity : AppCompatActivity() {
                         android.R.string.ok
                     ) // After clicking the accept button we remove the film
                     { _, _ ->
+                        val apiCall: Call<Unit> =
+                            RetrofitClient.apiRetrofit.delete("Bearer $token", infoFilm.id!!)
 
+                        apiCall.enqueue(object : Callback<Unit> {
+                            override fun onResponse(
+                                call: Call<Unit>,
+                                response: Response<Unit>,
+                            ) {
+                                if (response.code() in 200..299) {
+                                    Toast.makeText(
+                                        applicationContext,
+                                        "Pelicula Borrada",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                    finish()
+                                } else if (response.code() == 401 || response.code() == 500) {
+                                    ValidationUtils.closeSession(applicationContext)
+                                    Toast.makeText(
+                                        applicationContext,
+                                        "Token caducado",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                } else {
+                                    Toast.makeText(applicationContext,
+                                        "Error borrando la pelicula",
+                                        Toast.LENGTH_SHORT).show()
+                                }
+                            }
 
-                        finish()
+                            override fun onFailure(call: Call<Unit>, t: Throwable) {
+                                TODO("Not yet implemented")
+                            }
+                        })
                     }.setNegativeButton(getString(R.string.cancel_button), null).create()
                     .show()
 

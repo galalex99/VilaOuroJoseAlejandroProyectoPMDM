@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     android:padding="@dimen/default_padding_size"
     tools:context=".activities.AddEditActivity">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -72,7 +73,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/tietEditAddMoviePremiere"
                 android:layout_width="match_parent"
-                android:inputType="date"
+                android:inputType="number"
                 android:layout_height="wrap_content"
                 android:hint="@string/premiere_label" />
         </com.google.android.material.textfield.TextInputLayout>

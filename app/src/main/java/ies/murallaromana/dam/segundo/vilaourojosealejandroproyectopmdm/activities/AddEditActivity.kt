@@ -17,6 +17,7 @@ import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.databindi
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.model.dao.retrofit.Api
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.model.entities.Film
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.utils.Preferences
+import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.utils.ValidationUtils
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -41,9 +42,10 @@ class AddEditActivity : AppCompatActivity() {
             binding.tietEditAddTitle.setText(film?.title)
             binding.tietEditAddDirector.setText(film?.director)
             binding.tietEditAddLanguage.setText(film?.language)
-            binding.tietEditAddMoviePremiere.setText(film?.moviePremiere)
+            binding.tietEditAddMoviePremiere.setText(film?.moviePremiere.toString())
             binding.tietEditAddScore.setText(film?.score.toString())
             binding.tietEditAddAgeRating.setText(film?.ageRating.toString())
+            binding.tietEditAddFilmDuration.setText(film?.duration.toString())
             binding.tietEditAddUrl.setText(film?.url.toString())
 
         }
@@ -153,7 +155,7 @@ class AddEditActivity : AppCompatActivity() {
                                     title,
                                     director,
                                     language,
-                                    premiere,
+                                    premiere.toInt(),
                                     score.toDouble(),
                                     age.toShort(),
                                     url,
@@ -176,12 +178,17 @@ class AddEditActivity : AppCompatActivity() {
                                                 "Creación da pelicula correcta",
                                                 Toast.LENGTH_SHORT
                                             ).show()
-                                        } else {
+                                        } else if (response.code() == 401 || response.code() == 500) {
+                                            ValidationUtils.closeSession(applicationContext)
                                             Toast.makeText(
                                                 applicationContext,
-                                                "Creación da pelicula incorrecta",
+                                                "Token caducado",
                                                 Toast.LENGTH_SHORT
                                             ).show()
+                                        } else {
+                                            Toast.makeText(applicationContext,
+                                                "Error creando la pelicula",
+                                                Toast.LENGTH_SHORT).show()
                                         }
                                         // We use the intent with flags so that we return to the list without being able to return to the detail activity
                                         val intent =
@@ -203,11 +210,11 @@ class AddEditActivity : AppCompatActivity() {
                                     title,
                                     director,
                                     language,
-                                    premiere,
+                                    premiere.toInt(),
                                     score.toDouble(),
                                     age.toShort(),
                                     url,
-                                    10
+                                    duration.toInt()
                                 )
                                 val apiCall: Call<Film> =
                                     RetrofitClient.apiRetrofit.editFilm(
@@ -225,12 +232,17 @@ class AddEditActivity : AppCompatActivity() {
                                                 "Edición da pelicula correcta",
                                                 Toast.LENGTH_SHORT
                                             ).show()
-                                        } else {
+                                        } else if (response.code() == 401 || response.code() == 500) {
+                                            ValidationUtils.closeSession(applicationContext)
                                             Toast.makeText(
                                                 applicationContext,
-                                                "Ediciónn da pelicula incorrecta",
+                                                "Token caducado",
                                                 Toast.LENGTH_SHORT
                                             ).show()
+                                        } else {
+                                            Toast.makeText(applicationContext,
+                                                "Error editando la pelicula",
+                                                Toast.LENGTH_SHORT).show()
                                         }
                                         // We use the intent with flags so that we return to the list without being able to return to the detail activity
                                         val intent =
@@ -246,13 +258,7 @@ class AddEditActivity : AppCompatActivity() {
                                         Log.d("Error  film", t.message.toString())
                                     }
                                 })
-
                             }
-                            Toast.makeText(
-                                this,
-                                getString(R.string.film_save_confirmation),
-                                Toast.LENGTH_SHORT
-                            ).show()
                         }
                     }.setNegativeButton(getString(R.string.cancel_button), null).create()
                     .show()
