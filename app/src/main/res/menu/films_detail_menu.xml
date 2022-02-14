@@ -16,8 +16,15 @@
     <item
         android:id="@+id/call_action"
         android:icon="@drawable/icon_phone"
-        android:orderInCategory="300"
-        android:title="delete"
+        android:orderInCategory="310"
+        android:title="call"
+        android:visible="false"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/logout_action"
+        android:icon="@drawable/icon_logout"
+        android:orderInCategory="310"
+        android:title="logout"
         android:visible="false"
         app:showAsAction="always" />
     <item

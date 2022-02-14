@@ -54,10 +54,12 @@ class LoginActivity : AppCompatActivity() {
             // Create a user var and login on api with
             val user = User(binding.tietEmailLogin.text.toString(),
                 binding.tietPasswdLogin.text.toString())
+            binding.btLogin.isEnabled=false
             val loginCall = RetrofitClient.apiRetrofit.login(user)
             loginCall.enqueue(object : Callback<Token> {
                 override fun onFailure(call: Call<Token>, t: Throwable) {
                     Log.d("Login OnFailure", t.toString())
+                    binding.btLogin.isEnabled=true
                 }
 
                 override fun onResponse(call: Call<Token>, response: Response<Token>) {
@@ -69,6 +71,7 @@ class LoginActivity : AppCompatActivity() {
                             Toast.makeText(loginContext,
                                 "Error gardando o token",
                                 Toast.LENGTH_SHORT).show()
+                            binding.btLogin.isEnabled=true
                         } else {
                             preferences.saveData(token)
                             Log.d("LoginC", "Login correcto")
@@ -83,14 +86,11 @@ class LoginActivity : AppCompatActivity() {
                         Toast.makeText(loginContext,
                             "Error na autenticacion, intenta mais tarde",
                             Toast.LENGTH_SHORT).show()
+                        binding.btLogin.isEnabled=true
                     }
 
                 }
             })
         }
-        // if data is correct start list activity
-        // } else {
-        //
-        //    }
     }
 }

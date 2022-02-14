@@ -186,9 +186,11 @@ class AddEditActivity : AppCompatActivity() {
                                                 Toast.LENGTH_SHORT
                                             ).show()
                                         } else {
-                                            Toast.makeText(applicationContext,
+                                            Toast.makeText(
+                                                applicationContext,
                                                 "Error creando la pelicula",
-                                                Toast.LENGTH_SHORT).show()
+                                                Toast.LENGTH_SHORT
+                                            ).show()
                                         }
                                         // We use the intent with flags so that we return to the list without being able to return to the detail activity
                                         val intent =
@@ -216,6 +218,7 @@ class AddEditActivity : AppCompatActivity() {
                                     url,
                                     duration.toInt()
                                 )
+                                film=null
                                 val apiCall: Call<Film> =
                                     RetrofitClient.apiRetrofit.editFilm(
                                         "Bearer $token",
@@ -240,9 +243,11 @@ class AddEditActivity : AppCompatActivity() {
                                                 Toast.LENGTH_SHORT
                                             ).show()
                                         } else {
-                                            Toast.makeText(applicationContext,
+                                            Toast.makeText(
+                                                applicationContext,
                                                 "Error editando la pelicula",
-                                                Toast.LENGTH_SHORT).show()
+                                                Toast.LENGTH_SHORT
+                                            ).show()
                                         }
                                         // We use the intent with flags so that we return to the list without being able to return to the detail activity
                                         val intent =

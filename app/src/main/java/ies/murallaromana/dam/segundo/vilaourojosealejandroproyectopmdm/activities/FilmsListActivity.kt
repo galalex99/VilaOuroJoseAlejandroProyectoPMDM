@@ -1,6 +1,7 @@
 package ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.activities
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.util.Log
@@ -26,7 +27,8 @@ class FilmsListActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityListFilmsBinding
     private lateinit var menuItemCall: MenuItem
-
+    private lateinit var menuItemLogout: MenuItem
+    private lateinit var context : Context
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onResume() {
@@ -39,7 +41,7 @@ class FilmsListActivity : AppCompatActivity() {
         // Get the preferences to retrieve the token and get the token and the context to make petitions
         val preferences = Preferences(this)
         val token: String? = preferences.retrieveData("token")
-        val context = this
+        context = this
 
         // Retrofit retrieve data
         val apiCall: Call<List<Film>> = RetrofitClient.apiRetrofit.getFilms("Bearer $token")
@@ -48,14 +50,18 @@ class FilmsListActivity : AppCompatActivity() {
                 // If the petition has a correct code and the response has data we create put the data in  the adapter
                 if (response.code() in 200..299 && response.body() != null) {
                     val listFilms = response.body()
-                    val adapter = listFilms?.let { FilmsListAdapter(it, context) }
+                    val adapter = listFilms?.let { FilmsListAdapter(it,
+                        context as FilmsListActivity
+                    ) }
                     binding.rvFilmsList.adapter = adapter
                     val layoutManager = LinearLayoutManager(context)
                     binding.rvFilmsList.layoutManager = layoutManager
 
                     // Divider between each item
-                    val divider = DividerItemDecoration(binding.rvFilmsList.context,
-                        layoutManager.orientation)
+                    val divider = DividerItemDecoration(
+                        binding.rvFilmsList.context,
+                        layoutManager.orientation
+                    )
                     binding.rvFilmsList.addItemDecoration(divider)
 
                     binding.floatButtonAddFilm.setOnClickListener {
@@ -66,7 +72,11 @@ class FilmsListActivity : AppCompatActivity() {
                 } else if (response.code() == 401 || response.code() == 500) {
                     ValidationUtils.closeSession(context)
                 } else {
-                    Toast.makeText(context,"No ha sido posible recuperar la lista de películas",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        context,
+                        "No ha sido posible recuperar la lista de películas",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
 
@@ -85,6 +95,7 @@ class FilmsListActivity : AppCompatActivity() {
             DetailActivity.menuItemDelete = menu.findItem(R.id.delete_action)
             DetailActivity.menuItemEdit = menu.findItem(R.id.edit_action)
             menuItemCall = menu.findItem(R.id.call_action)
+            menuItemLogout = menu.findItem(R.id.logout_action)
         }
         return true
     }
@@ -94,6 +105,7 @@ class FilmsListActivity : AppCompatActivity() {
         DetailActivity.menuItemEdit.isVisible = false
         DetailActivity.menuItemDelete.isVisible = false
         DetailActivity.menuItemSave.isVisible = false
+        menuItemLogout.isVisible = true
         menuItemCall.isVisible = true
         return super.onPrepareOptionsMenu(menu)
     }
@@ -110,6 +122,20 @@ class FilmsListActivity : AppCompatActivity() {
                     { _, _ ->
                         val dial = "tel:634926707"
                         startActivity(Intent(Intent.ACTION_DIAL, Uri.parse(dial)))
+                    }.setNegativeButton(getString(R.string.cancel_button), null).create()
+                    .show()
+
+                return true
+            }
+            R.id.logout_action -> {
+                AlertDialog.Builder(this)
+                    .setTitle("Cerrar sesion")
+                    .setMessage("Quieres cerrar la sesion ?")
+                    .setPositiveButton(
+                        android.R.string.ok
+                    ) // After clicking we call support
+                    { _, _ ->
+                        ValidationUtils.closeSession(context)
                     }.setNegativeButton(getString(R.string.cancel_button), null).create()
                     .show()
 

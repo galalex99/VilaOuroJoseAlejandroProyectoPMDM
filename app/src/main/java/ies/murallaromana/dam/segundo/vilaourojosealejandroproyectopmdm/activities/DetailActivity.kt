@@ -13,7 +13,6 @@ import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.R
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.RetrofitClient
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.databinding.ActivityDetailBinding
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.model.entities.Film
-import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.model.entities.Token
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.utils.Preferences
 import ies.murallaromana.dam.segundo.vilaourojosealejandroproyectopmdm.utils.ValidationUtils
 import retrofit2.Call
@@ -139,7 +138,9 @@ class DetailActivity : AppCompatActivity() {
                             }
 
                             override fun onFailure(call: Call<Unit>, t: Throwable) {
-                                TODO("Not yet implemented")
+                                Toast.makeText(applicationContext,
+                                    "Error peticion borrado de la pelicula",
+                                    Toast.LENGTH_SHORT).show()
                             }
                         })
                     }.setNegativeButton(getString(R.string.cancel_button), null).create()
